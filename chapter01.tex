@@ -1,0 +1,75 @@
+\chapter{Introduction}
+\section{Streszczenie}
+    W poniższej pracy inżynierskiej przedstawiono proces tworzenia narzędzia do wyceny wybranych instrumentów finansowych. Zaprezentowano wycenę europejskiej opcji przy użyciu znanego modelu Blacka-Scholes'a z 1973 roku, gdzie instrumentem podstawowym jest akcja wygenerowana za pomocą Geometrycznego Rruchu Browna. Pokazano również zastosowanie modelu Black'a z 1976 roku, gdzie w przeciwieństwie do poprzedniego modelu cena instrumentu bazowego zostaje zastąpiona zdyskontowaną wartością kontraktu futures/forward na ten instrument.
+    
+    W tym celu została stworzona aplikacja desktopowa w języku F\#, w paradygmacie programowania funkcyjnego, przy użyciu wzorca MVVM oraz technologii XAML do stworzenia interfejsu użytkownika. Praca zawiera również swoisty poradnik, jak stworzyć aplikację w języku F\#, opartą o architekturę MVVM w zintegrowanym środowisku programistycznym Visual Studio 2019 będącym produktem firmy Microsoft, ponieważ dokładnie powyższe połączenie różnych technologii nie jest bardzo często spotykane, co przejawia się zredukowaną ilością poradników pomagających stworzyć podobną aplikację nowym użytkownikom.
+    
+    \emph{Słowa kluczowe: programowanie funkcyjne, instrumenty finansowe, wycena, MVVM, Black-Scholes, Black}
+
+\section{Abstract}
+    This paper is an overview of some methods used for pricing selected financial instruments (or their derivatives). Main part of the project was creating a tool - computer program written mostly in F\# for that purpose. Two models have been presented: first being Black-Scholes model from 1973 which gives an estimate of the price of european-style option. As the underlying asset stock price was used. In order to generate stock prices over time Geometric Brownion Motion has been implemented as this stochastic process is usually applied in the Black-Scholes model. The other model is Black's model from 1976 which is a slightly altered Black-Scholes model while it is adjusted for valuing options on futures contracts.
+    
+    This paper can be as well kind of a guide how to create an F\# application using MVVM architecture with XAML markup language for creating user interface as such tutorials are scarce in literature.
+    
+    \emph{Keywords: functional programming, financial instruments, pricing, MVVM, Black-Scholes, Black}
+
+
+
+
+
+
+\section{Aim}
+    \todo{rewrite to polish}
+    Stworzenie aplikacji (desktopowej) będącej narzędziem do wyceny „bond option”(opcja na obligację) w języku F\#.
+    
+    W obrębie aplikacji: 
+    (w wersji podstawowej)
+    Stworzenie modelu do przewidywania cen: 1F Hull-White Model.
+    Możliwość wyspecjalizowania produktu (okres opcyjności, exercise date, maturity).
+    Obliczenie ceny instrumentu.
+    
+    (w wersji rozszerzonej)
+    Możliwość skorzystania z danych historycznych.
+    Obliczenie ryzyka wybranego typu (np. delta).
+    Porównanie bazowego modelu z innymi (przykładowo z Geometric Brownian Motion).
+    Podgląd „na żywo”.
+    Wykorzystanie symulacji Monte Carlo do przewidywania ceny (silnik napisany w C++).
+
+\section{Scope of the thesis}
+    \todo{fill in at the end}
+    In chapter 1 - blabla
+    In chapter 2 I will talk about blablah
+
+
+
+
+\section{Technologies Overview}
+\subsection{Why F\#?}
+    \todo{rewrite this section}
+    Despite being a newcomer to the Visual Studio family, F\# has already helped many .NET developers discover the power of functional programming. F\# has a strong, growing reputation for its ability to simplify complicated problems like parallel and asynchronous programming, data processing and financial modeling. However, that doesn’t mean that F\# is a niche language; it’s also great for solving everyday problems.
+    
+    In this article, you’ll learn how to use F\# to build practical Silverlight and Windows Presentation Foundation (WPF) Model-View-ViewModel (MVVM) applications. You’ll see how the same concepts that make F\# great for simplifying complicated algorithms can also be used to reduce the ceremony around your view models. You’ll also see how the well-publicized asynchronous workflows in F\# can be applied in a GUI setting. Finally, I’ll cover two common approaches for structuring MVVM applications in F\#, as well as the strengths and weaknesses of each approach. By the end of the article, you’ll understand that F\# is more than just a tool for specialized problems, and you’ll be able to use F\# to make even the simplest applications easier to read, write and maintain. \\
+    \url{https://docs.microsoft.com/en-us/archive/msdn-magazine/2011/september/fsharp-programming-build-mvvm-applications-in-fsharp}
+    
+    You may be surprised at how effectively F\# improves the signal-to-noise ratio in your code if you’re used to C\# programming.
+    
+    Figure 3 shows the same view model written in C\#. The increase in ceremonious code is dramatic. It takes roughly four times as many lines of code to express the view model in C\# as it does in F\#.
+    
+    
+    Functional programming has a bad reputation at times for being overly terse and difficult to read, but in this example, it’s clear that F\# doesn’t sacrifice clarity for brevity.
+    
+    Keep in mind that F\# is still statically typed
+    
+    The change to run this behavior asynchronously didn’t require much additional code, but perhaps just as importantly, it didn’t require a change in the way the code was structured. When you write the code the first time, you don’t have to worry about designing it to possibly run asynchronously in the future. You’re free to write synchronous code when prototyping and then easily convert it to async when it becomes necessary. This flexibility can save you hours of development time and make your clients much happier when you’re able to respond to change more rapidly.
+    
+    Random citation \cite{DUMMY:1} embeddeed in text.
+    Another citation \cite{kexugit} from my webpage :D.
+    
+    It’s very easy to create an MVVM application using the polyglot approach.
+
+\subsection{Why MVVM?}
+    \todo{fill}
+
+\subsection{Why XAML?}
+    \todo{fill}
+
