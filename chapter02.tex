@@ -5,15 +5,55 @@
 \todo
 it's basically Wiener Process\^2
 
-\subsection{Option}
-\todo
-Option can be Put or Call, it measns...
+\subsection{Options}
+    Options are some of the most popular derivative financial instruments. Derivative means in this example that it's value is reliant upon an underlying asset. The most important thing about options, one that distinguishes them from other derivative instruments it the \textbf{optionality} -- contract can, be is not obligatory to be made.
+    
+    There are 2 main types of options:
+    \begin{itemize}
+        \item \textbf{Call option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time,
+        \item \textbf{Put option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time\cite{Call_Put_Option_Definition}.
+    \end{itemize}
+    
+    There are several parameters that describe an option, most important ones are:
+    \begin{itemize}
+        \item \textbf{Expiration Date} -- Specific moment in time by which the holder of the option has to decide whether he wants to exercise (use) the option.
+        \item \textbf{Strike Price} -- agreed price at which the derivative underlying asset can be bought or sold (depends on a type of option) when it is exercised.
+    \end{itemize}
+    
+    Further division into option types depends on when the option can be exercised. The most basic one is \textbf{European}-style option -- decision whether option will or will not be exercised is made at the time of option's expiry. Continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in \textbf{Burmudan} Option -- contract can be exercised at specific days before the expiration. In this paper European Options will be presented\cite{Option_Types}.
 
 \subsection{Black-Scholes Model}
-The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 major economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel prize for economics in 1997. Certainly same would happen for Black if sadly it was not for his death in 1975).
-
-Their model was a significant breakthrough in world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
-
-This thesis' aim was not to goo deep into understanding the mathematical background behind the model but rather implement the model in a practical tool that one would be able to effectively use. Therefore more information and specifics can be found either in the original publication \cite{10.2307/1831029} of the model from 1973 in \textit{The Pricing of Options and Corporate Liabilities} of the Journal of Political Economy by Fischer Black and Myron Scholes.
-
-The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows geometric Brownian motion with constant drift and volatility. 
+    The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 major economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel prize for economics in 1997. Certainly same would happen for Black if sadly it was not for his death in 1975).
+    
+    Their model was a significant breakthrough in world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
+    
+    This thesis' aim was not to goo deep into understanding the mathematical background behind the model but rather implement the model in a practical tool that one would be able to effectively use. Therefore more information and specifics can be found either in the original publication \cite{10.2307/1831029} of the model from 1973 in \textit{The Pricing of Options and Corporate Liabilities} of the Journal of Political Economy by Fischer Black and Myron Scholes.
+    
+    Main formula of the model used for option pricing is as follows:
+    $$
+    C = S_0\phi(d_1) - Ke^{-rT}\phi(d_2)
+    $$
+    $$
+    P = -S_0\phi(-d_1) + Ke^{-rT}\phi(-d_2)
+    $$
+    $$
+    d_1 = ln\frac{S_0}{K} + (r+\frac{\sigma^2}{2})t
+    $$
+    $$
+    d_2 = d_1 - \sigma\sqrt{t},
+    $$
+    where:
+    \begin{itemize}
+        \item $C$ - call option price
+        \item $P$ - put option price
+        \item $S_0$ - underlying asset price at the time being
+        \item $\phi()$ - standardized cumulative normal distribution
+        \item $K$ - strike price
+        \item $r$ - risk free rate (1\% represented as 0.01)
+        \item $t$ - time to maturity in years (18 months represented as 1.5)
+        \item $\sigma$ - volatility (20\% represented as 0.2)
+    
+    \end{itemize}
+    
+    The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows geometric Brownian motion with constant drift and volatility. 
+    \todo{diff eq thats at the core of the model as curiosity}
