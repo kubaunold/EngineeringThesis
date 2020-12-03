@@ -13,66 +13,124 @@
     
     \emph{Keywords: functional programming, financial instruments, pricing, MVVM, Black-Scholes, Black}
 
-
-
-
-
-
 \section{Thesis assumptions}
-    \todo{rewrite to polish}
-    Stworzenie aplikacji (desktopowej) będącej narzędziem do wyceny „bond option”(opcja na obligację) w języku F\#.
+    The main goal is to create a tool in functional programming paradigm which will be used to price selected financial instruments. To achieve this goal F\# programming language will be used as it was created mostly to support functional programming.
     
-    W obrębie aplikacji: 
-    (w wersji podstawowej)
-    Stworzenie modelu do przewidywania cen: 1F Hull-White Model.
-    Możliwość wyspecjalizowania produktu (okres opcyjności, exercise date, maturity).
-    Obliczenie ceny instrumentu.
+    App will consist of several different technologies such as MVVM design pattern, XAML language to create View part of the project and minor C\# background to connect XAML's View with F\#'s ViewModel. Everything will be written in Visual Studio 2019 IDE.
     
-    (w wersji rozszerzonej)
-    Możliwość skorzystania z danych historycznych.
-    Obliczenie ryzyka wybranego typu (np. delta).
-    Porównanie bazowego modelu z innymi (przykładowo z Geometric Brownian Motion).
-    Podgląd „na żywo”.
-    Wykorzystanie symulacji Monte Carlo do przewidywania ceny (silnik napisany w C++).
+    Basic assumptions within the application include:
+    \begin{itemize}
+    \item Ability to specialize the product (maturity date, strike price, underlying asset price).
+    \item Implementing Black-Scholes model to price options.
+    \todo{Add GBM}
+    \todo{Add several greeks}
+    \end{itemize}
 
 \section{Scope of the thesis}
     \todo{fill in at the end}
     In chapter 1 - blabla
     In chapter 2 I will talk about blablah
 
-
-
-
 \section{Technologies Overview}
 \subsection{Programming paradigms}
-    Programming paradigm is nothing more but an overall concept which describes "how" the programming is done and what is the methodology behind the language that adheres to a specific type of a paradigm. Throughout the years programming languages evolved, new ones have been created, so that today there are from 150, according to TIOBE Programming Community, up to 700, listed by Wikipedia, different programming languages\cite{numberOfProgrammingLanguages}. Although some sources\cite{numberOfProgrammingLanguages_hopl_info} state that there are almost as many as 9000 (sic) programming languages the exact number of those is not that important -- rather variety and the fact that there are many of them is crucial as it indicates that they must differ from each other and it turns out these differences can somehow be grouped, what is presented below.
+    Programming paradigm is nothing more but an overall concept which describes \textit{how} the programming is done and what is the methodology behind the language that adheres to a specific type of a paradigm. Throughout the years programming languages evolved, new ones have been created, so that today there are from 150, according to TIOBE Programming Community, up to 700, listed by Wikipedia, different programming languages \cite{numberOfProgrammingLanguages}. Although some sources \cite{numberOfProgrammingLanguages_hopl_info} state that there are almost as many as 9000 (sic) programming languages the exact number of those is not that important -- rather variety and the fact that there are many of them is crucial as it indicates that they must differ from each other and it turns out these differences can somehow be grouped, what is presented below.
     
-\subsection{Why F\#?}
-    \todo{rewrite this section}
-    Despite being a newcomer to the Visual Studio family, F\# has already helped many .NET developers discover the power of functional programming. F\# has a strong, growing reputation for its ability to simplify complicated problems like parallel and asynchronous programming, data processing and financial modeling. However, that doesn’t mean that F\# is a niche language; it’s also great for solving everyday problems.
+    The most basic and intuitive approach into dividing paradigms is into 2 groups:
+    \begin{itemize}
+        \item Imperative Programming
+        \item Declarative Programming
+    \end{itemize}
     
-    In this article, you’ll learn how to use F\# to build practical Silverlight and Windows Presentation Foundation (WPF) Model-View-ViewModel (MVVM) applications. You’ll see how the same concepts that make F\# great for simplifying complicated algorithms can also be used to reduce the ceremony around your view models. You’ll also see how the well-publicized asynchronous workflows in F\# can be applied in a GUI setting. Finally, I’ll cover two common approaches for structuring MVVM applications in F\#, as well as the strengths and weaknesses of each approach. By the end of the article, you’ll understand that F\# is more than just a tool for specialized problems, and you’ll be able to use F\# to make even the simplest applications easier to read, write and maintain. \\
-    \url{https://docs.microsoft.com/en-us/archive/msdn-magazine/2011/september/fsharp-programming-build-mvvm-applications-in-fsharp}
+    \subsubsection{Imperative Programming}
+    This way of programming is not by accident described as the first one -- historically languages that present this type of programming have emerged primarily. Imperative programming enables the programmer to manage processor's behaviour on much more precise level. Commands show step-by-step how the computation is executed. These commands affect a program's state. This paradigm focuses on describing \textit{how} the goal should be achieved.
     
-    You may be surprised at how effectively F\# improves the signal-to-noise ratio in your code if you’re used to C\# programming.
+    Imperative programming can be further broken down into 3 groups:
+    \begin{enumerate}
+        \item \textbf{Procedural Programming} -- underlying model is based on a procedure (set of coded instructions \cite{procedureDefinition}). It has the ability to reuse code written once. Examples of procedural programming languages:
+            \begin{itemize}
+                \item C
+                \item C++
+                \item Java
+                \item ColdFusion
+                \item Pascal
+            \end{itemize}
+        \item \textbf{Object Oriented Programming} -- program is a set of classes and objects (instances of a class) that are meant to interact with each other. Examples of languages supporting OOP paradigm:
+            \begin{itemize}
+                \item Objective-C
+                \item C++
+                \item Java
+                \item Visual Basic .NET
+                \item Python
+            \end{itemize}
+        \item \textbf{Parallel Processing Approach} -- this style of programming is designed to divide computing the code into multiple processors in order to minimize time required for computation. Example of languages supporting parallel programming approach:
+            \begin{itemize}
+                \item NESL
+                \item C
+                \item C++
+            \end{itemize}
+    \end{enumerate}
     
-    Figure 3 shows the same view model written in C\#. The increase in ceremonious code is dramatic. It takes roughly four times as many lines of code to express the view model in C\# as it does in F\#.
-    
-    
-    Functional programming has a bad reputation at times for being overly terse and difficult to read, but in this example, it’s clear that F\# doesn’t sacrifice clarity for brevity.
-    
-    Keep in mind that F\# is still statically typed
-    
-    The change to run this behavior asynchronously didn’t require much additional code, but perhaps just as importantly, it didn’t require a change in the way the code was structured. When you write the code the first time, you don’t have to worry about designing it to possibly run asynchronously in the future. You’re free to write synchronous code when prototyping and then easily convert it to async when it becomes necessary. This flexibility can save you hours of development time and make your clients much happier when you’re able to respond to change more rapidly.
-    
-    Random citation \cite{DUMMY:1} embeddeed in text.
-    Another citation \cite{kexugit} from my webpage :D.
-    
-    It’s very easy to create an MVVM application using the polyglot approach.
+    \subsubsection{Declarative Programming}
+    On the other hand a programmer may want to focus not on \textit{how} the code should be ran on a computer but rather what \textit{what the result should look like} and the way of obtaining it is not the most important thing. One would rather give it up to the compiler to decide what is the best way of achieving the result. Declarative programming is also consisted of smaller groups, such as:
+    \begin{enumerate}
+        \item \textbf{Logic Programming} -- in logic programming the programmer has a knowledge, expressed in a logical form, about facts and rules concerning specific problem \cite{logicProgramming}. This type of programming resembles a mathematical proof. \textbf{Prolog} language is an example of this programming paradigm.
+        
+        \item \textbf{Database-Driven Programming Approach} -- it is based on storing the data and moving it, as well as the keeping information about relations between entities. \textbf{SQL} is one of the most popular examples of this programming group.
+        
+        \item \textbf{Functional Programming} -- like object in object-related programming in functional programming the most basic unit is a function. Shared state is avoided, as well as mutable data (the programmer is unable to crate a variable). Examples of functional programming paradigm:
+            \begin{itemize}
+                \item F\#
+                \item Haskell
+                \item Common Lisp
+                \item OCaml
+                \item Racket
+            \end{itemize}
+    \end{enumerate}
 
-\subsection{Why MVVM?}
+\subsection{F\#}
+    F\# is a programming language that was created back in 2005 by Don Syme in cooperation with Microsoft Research. Although it is multi-paradigm programming language it best fits the functional, declarative programming group. It is open-source and belongs to .NET Framework \cite{WhatIsFSharp} \cite{FSharpWiki}.
+    
+    F\# is strongly typed language that uses type interference. It has lightweight syntax and is immutable by default. Lightweight syntax can be observed in low signal-to-noise ratio in comparison to other languages (for example C\#).
+    
+    \begin{lstlisting}[caption=C\# code example]
+        public static class SumOfSquaresHelper
+        {
+           public static int Square(int i)
+           {
+              return i * i;
+           }
+    
+           public static int SumOfSquares(int n)
+           {
+              int sum = 0;
+              for (int i = 1; i <= n; i++)
+              {
+                 sum += Square(i);
+              }
+              return sum;
+           }
+        }
+        
+        int r = SumOfSquaresHelper.SumOfSquares(100);
+    \end{lstlisting}
+    
+    \begin{lstlisting}[language=FSharp, caption=F\# code example]
+        let sumOfSquares n = 
+           [1..10] |> List.map (fun x -> x*x) |> List.sum
+        
+        let r = sumOfSquares 100
+    \end{lstlisting}
+    
+    Both above snippets are taken from the site \url{https://fsharpforfunandprofit.com/} with minor changes applied to further improve F\# code by using lambda function \cite{compareCandF}. Both of these perform the same task -- count the sum of squares of all integers preceding certain number. The goal is to show how succinct F\# can be in comparison to the same code but written in C\#.
+    
+    Taking all F\# features into account it comes quite obvious that it is very interesting, high level language that has potential to be used in various situations. One of these is mathematical modelling vastly used in financial purposes such as pricing financial instruments -- what is presented in this thesis. In order to estimate the price, some model has to be used and since there are so many variables nonlinearly affecting the final price -- the models are frequently quite complex. For the sake of simplifying the process of implementing the model having a syntax that very well resembles the mathematical language is beneficial.
+    
+    Immutability options introduced in F\# significantly reduce the possibility of making a mistake by a programmer which could be hard to find while debugging the code. Furthermore syntax such concise as F\#'s is far more susceptible for code maintenance.
+    
+    These are the major reasons why F\# was selected to be the core language of the project.
+\subsection{MVVM}
     \todo{fill}
 
-\subsection{Why XAML?}
+\subsection{XAML}
     \todo{fill}
 
