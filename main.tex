@@ -32,7 +32,7 @@
 %\usepackage[cp1250]{inputenc} % for cp1250 file encoding
 \usepackage[utf8]{inputenc} % for UTF8 file encoding
 \usepackage[T1]{fontenc}
-\usepackage[polish]{babel}
+\usepackage[polish,english]{babel}
 %\usepackage[english]{babel}
 %\DisemulatePackage{setspace}
 \usepackage{setspace}
@@ -41,9 +41,12 @@
 %\usepackage{soul} % packege with commands for text highliting
 \usepackage{todonotes}
 \usepackage{ebgaramond} % package with garamond font (required on the title page)
-% Added by me during writing
-\usepackage{float}  %%  used for \begin{figure}[H]  <- insert exactly HERE!
 
+% Added by me during writing
+% ==========================================================================
+\usepackage{float}  %%  used for \begin{figure}[H]  <- insert exactly HERE!
+\usepackage{caption} % used for adding source to an img
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
 
 
 
@@ -509,37 +512,38 @@ Listing \thelstlisting: #1\hfill%\hfill%
 
 
 \usepackage{ifpdf}
-%\newif\ifpdf \ifx\pdfoutput\undefined
-%\pdffalse % we are not running PDFLaTeX
-%\else
-%\pdfoutput=1 % we are running PDFLaTeX
-%\pdftrue \fi
+\newif\ifpdf \ifx\pdfoutput\undefined
+\pdffalse % we are not running PDFLaTeX
+\else
+\pdfoutput=1 % we are running PDFLaTeX
+\pdftrue \fi
 \ifpdf
     \usepackage[pdftex,bookmarks,breaklinks,unicode]{hyperref}
     \usepackage[pdftex]{graphicx}
     \DeclareGraphicsExtensions{.pdf,.jpg,.mps,.png}
-\pdfcompresslevel=9
-\pdfoutput=1
-\makeatletter
-\AtBeginDocument{  % Here are the metadata that will be embedded in the resulting pdf. Please fill in them correctly
-  \hypersetup{
-	pdfinfo={
-    Title = {\@title},
-    Author = {\@author},
-    Subject={},
-    Keywords={},  
+    \pdfcompresslevel=9
+    \pdfoutput=1
+    \makeatletter
+    \AtBeginDocument{  % Here are the metadata that will be embedded in the resulting pdf. Please fill in them correctly
+    \hypersetup{
+        pdfinfo={
+        Title = {\@title},
+        Author = {\@author},
+        Subject={},
+        Keywords={},  
 		Producer={},
 		Creator={pdftex}
 	}}
-}
-\pdftrailerid{} %Remove ID
-\pdfsuppressptexinfo15 %Suppress PTEX.Fullbanner and info of imported PDFs
+    }
+    \pdftrailerid{} %Remove ID
+    \pdfsuppressptexinfo15 %Suppress PTEX.Fullbanner and info of imported PDFs
 
-\makeatother
+    \makeatother
 \else
-\usepackage{graphicx}
-\DeclareGraphicsExtensions{.eps,.ps,.jpg,.mps,.png}
+    \usepackage{graphicx}
+    \DeclareGraphicsExtensions{.eps,.ps,.jpg,.mps,.png}
 \fi
+
 \sloppy
 
 %\graphicspath{{figures01/}{figures02/}} %% if you with to have set the paths to figures  
@@ -782,6 +786,9 @@ SPECIALIZATION: & \@specjalnosc\\
 %\includeonly{abbreviations,chapter01} % uncomment it if you with to complile only selected latex files (this will speed up compilation, especially if you focuse on a specific part of the thesis)
 
 \begin{document}
+
+\selectlanguage{english}
+
 % Here you have the commands for setting the spacing (do not change)
 %\SingleSpacing
 %\OnehalfSpacing
