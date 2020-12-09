@@ -33,7 +33,7 @@
 
 \section{Technologies Overview}
 \subsection{Programming paradigms}
-    Programming paradigm is nothing more but an overall concept which describes \textit{how} the programming is done and what is the methodology behind the language that adheres to a specific type of a paradigm. Throughout the years programming languages evolved, new ones have been created, so that today there are from 150, according to TIOBE Programming Community, up to 700, listed by Wikipedia, different programming languages \cite{numberOfProgrammingLanguages}. Although some sources \cite{numberOfProgrammingLanguages_hopl_info} state that there are almost as many as 9000 (sic) programming languages the exact number of those is not that important -- rather variety and the fact that there are many of them is crucial as it indicates that they must differ from each other and it turns out these differences can somehow be grouped, what is presented below.
+    Programming paradigm is nothing more but an overall concept which describes \textit{how} the programming is done and what is the methodology behind the language that adheres to a specific type of a paradigm. Throughout the years programming languages evolved, new ones have been created, so that today there are from 150, according to TIOBE Programming Community, up to 700, listed by Wikipedia, different programming languages (more information can be found here \cite{numberOfProgrammingLanguages}). Although some sources (see here \cite{numberOfProgrammingLanguages_hopl_info}) state that there are almost as many as 9000 (sic) programming languages the exact number of those is not that important -- rather variety and the fact that there are many of them is crucial as it indicates that they must differ from each other and it turns out these differences can somehow be grouped, what is presented below.
     
     The most basic and intuitive approach into dividing paradigms is into 2 groups:
     \begin{itemize}
@@ -46,49 +46,49 @@
     
     Imperative programming can be further broken down into 3 groups:
     \begin{enumerate}
-        \item \textbf{Procedural Programming} -- underlying model is based on a procedure (set of coded instructions \cite{procedureDefinition}). It has the ability to reuse code written once. Examples of procedural programming languages:
+        \item \textbf{Procedural Programming} -- underlying model is based on a procedure (set of coded instructions, more detail here \cite{procedureDefinition}). It has the ability to reuse code written once. Examples of procedural programming languages:
             \begin{itemize}
-                \item C
-                \item C++
-                \item Java
-                \item ColdFusion
-                \item Pascal
+                \item C,
+                \item C++,
+                \item Java,
+                \item ColdFusion,
+                \item Pascal.
             \end{itemize}
         \item \textbf{Object Oriented Programming} -- program is a set of classes and objects (instances of a class) that are meant to interact with each other. Examples of languages supporting OOP paradigm:
             \begin{itemize}
-                \item Objective-C
-                \item C++
-                \item Java
-                \item Visual Basic .NET
-                \item Python
+                \item Objective-C,
+                \item C++,
+                \item Java,
+                \item Visual Basic .NET,
+                \item Python.
             \end{itemize}
         \item \textbf{Parallel Processing Approach} -- this style of programming is designed to divide computing the code into multiple processors in order to minimize time required for computation. Example of languages supporting parallel programming approach:
             \begin{itemize}
-                \item NESL
-                \item C
-                \item C++
+                \item NESL,
+                \item C,
+                \item C++.
             \end{itemize}
     \end{enumerate}
     
     \subsubsection{Declarative Programming}
     On the other hand a programmer may want to focus not on \textit{how} the code should be ran on a computer but rather what \textit{what the result should look like} and the way of obtaining it is not the most important thing. One would rather give it up to the compiler to decide what is the best way of achieving the result. Declarative programming is also consisted of smaller groups, such as:
     \begin{enumerate}
-        \item \textbf{Logic Programming} -- in logic programming the programmer has a knowledge, expressed in a logical form, about facts and rules concerning specific problem \cite{logicProgramming}. This type of programming resembles a mathematical proof. \textbf{Prolog} language is an example of this programming paradigm.
+        \item \textbf{Logic Programming} -- in logic programming the programmer has a knowledge, expressed in a logical form, about facts and rules concerning specific problem, see more information here \cite{logicProgramming}. This type of programming resembles a mathematical proof. \textbf{Prolog} language is an example of this programming paradigm.
         
         \item \textbf{Database-Driven Programming Approach} -- it is based on storing the data and moving it, as well as the keeping information about relations between entities. \textbf{SQL} is one of the most popular examples of this programming group.
         
         \item \textbf{Functional Programming} -- like object in object-related programming in functional programming the most basic unit is a function. Shared state is avoided, as well as mutable data (the programmer is unable to crate a variable). Examples of functional programming paradigm:
             \begin{itemize}
-                \item F\#
-                \item Haskell
-                \item Common Lisp
-                \item OCaml
-                \item Racket
+                \item F\#,
+                \item Haskell,
+                \item Common Lisp,
+                \item OCaml,
+                \item Racket.
             \end{itemize}
     \end{enumerate}
 
 \subsection{F\#}
-    F\# is a programming language that was created back in 2005 by Don Syme in cooperation with Microsoft Research. Although it is multi-paradigm programming language it best fits the functional, declarative programming group. It is open-source and belongs to .NET Framework \cite{WhatIsFSharp} \cite{FSharpWiki}.
+    F\# is a programming language that was created back in 2005 by Don Syme in cooperation with Microsoft Research. Although it is multi-paradigm programming language it best fits the functional, declarative programming group. It is open-source and belongs to .NET Framework (for more information go there \cite{WhatIsFSharp},  \cite{FSharpWiki}).
     
     F\# is strongly typed language that uses type interference. It has lightweight syntax and is immutable by default. Lightweight syntax can be observed in low signal-to-noise ratio in comparison to other languages (for example C\#).
     
@@ -121,7 +121,7 @@
         let r = sumOfSquares 100
     \end{lstlisting}
     
-    Both above snippets are taken from the site \url{https://fsharpforfunandprofit.com/} with minor changes applied to further improve F\# code by using lambda function \cite{compareCandF}. Both of these perform the same task -- count the sum of squares of all integers preceding certain number. The goal is to show how succinct F\# can be in comparison to the same code but written in C\#.
+    Both above snippets are taken from the site \url{https://fsharpforfunandprofit.com/} with minor changes applied to further improve F\# code by using lambda function (snippets source \cite{compareCandF}). Both of these perform the same task -- count the sum of squares of all integers preceding certain number. The goal is to show how succinct F\# can be in comparison to the same code but written in C\#.
     
     Taking all F\# features into account it comes quite obvious that it is very interesting, high level language that has potential to be used in various situations. One of these is mathematical modelling vastly used in financial purposes such as pricing financial instruments -- what is presented in this thesis. In order to estimate the price, some model has to be used and since there are so many variables nonlinearly affecting the final price -- the models are frequently quite complex. For the sake of simplifying the process of implementing the model having a syntax that very well resembles the mathematical language is beneficial.
     
@@ -131,9 +131,9 @@
 \subsection{MVVM}
     \textit{Model-View-ViewModel} is an example of an architectural pattern used in programming. This design pattern's main goal is to separate the user interface from back-end logic. For this purpose there are present 3 main components of the MVVM pattern:
     \begin{itemize}
-        \item View
-        \item ViewModel
-        \item Model
+        \item View,
+        \item ViewModel,
+        \item Model.
     \end{itemize}
     
     \begin{figure}[H]
@@ -228,7 +228,7 @@
         \end{figure} 
     
 \subsection{XAML}
-    \textit{XAML} stands for Extensible Application Markup Language and belongs to declarative markup language group. It is used in \textit{WPF} (\textit{Windows Presentation Forms} -- User Interface framework for creating desktop client applications \cite{wpf}) for separating between how an application looks like and how it behaves \cite{how_xaml_works} (both the GUI and its behavior were created in the same language). \textit{XAML} is an subset of \textit{XML}, because every \textit{XAML} file is as well a \textit{XML} file, but not every \textit{XML} file is a \textit{XAML} file.
+    \textit{XAML} stands for Extensible Application Markup Language and belongs to declarative markup language group. It is used in \textit{WPF} (\textit{Windows Presentation Forms} -- User Interface framework for creating desktop client applications, for more detail go there \cite{wpf}) for separating between how an application looks like and how it behaves (see here how xaml works \cite{how_xaml_works}) (both the GUI and its behavior were created in the same language). \textit{XAML} is an subset of \textit{XML}, because every \textit{XAML} file is as well a \textit{XML} file, but not every \textit{XML} file is a \textit{XAML} file.
     
     \textit{XAML} may resemble \textit{HTML}, although the idea behind those two is utterly different -- by comparing \textit{XML} to \textit{HTML} one can observe that:
     \begin{itemize}

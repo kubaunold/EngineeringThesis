@@ -5,7 +5,7 @@
     \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock price). In order to well define what a \textit{GBM} is, it essential to first describe several terms that will help further understanding.
     
     \subsection{Random Walk}
-        In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving \cite{randomWalk}.
+        In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, see more detail here \cite{randomWalk}.
         
         If 1-dimensional space is considered, then it is best to present the action on the number line.
         \begin{figure}[H]
@@ -36,7 +36,7 @@
         \[
         RW = \{P_n, n \in N\}
         \]
-        
+        %
         Since each move has the same probability to be $-1$ or $1$ then the expected value of such series (final position of the dot) can be easily calculated:
         \[
         \mathbb{E}(RW) = 0
@@ -53,9 +53,9 @@
         
     \subsection{Wiener Process}
         \textit{Wiener Process} is also usually called \textit{Standard Brownian Motion}. It is a continuous-time stochastic process named after Norbert Wiener for his work on 1D \textit{Brownian Motion}.
-        
-        \textit{Wiener Process}, as well as \textit{Random Walk}, starts at 0 (\( W(0) = 0 \)) and its increment follows Gaussian distribution with mean \(0\) and variance \(t-s\) for any \(0\leq s < t \) \cite{wienerProcess}.
-        
+        %
+        \textit{Wiener Process}, as well as \textit{Random Walk}, starts at 0 (\( W(0) = 0 \)) and its increment follows Gaussian distribution with mean \(0\) and variance \(t-s\) for any \(0\leq s < t \) (more info here \cite{wienerProcess}).
+        %
         This way a \textit{Brownian Motion} is basically a \textit{Random Walk} with steps which sizes are random.
         
 \section{Options}
@@ -63,8 +63,8 @@
     
     There are 2 main types of options:
     \begin{itemize}
-        \item \textbf{Call option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time,
-        \item \textbf{Put option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time \cite{Call_Put_Option_Definition}.
+        \item \textbf{Call option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time.
+        \item \textbf{Put option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time ( see definition there \cite{Call_Put_Option_Definition}).
     \end{itemize}
     
     There are several parameters that describe an option, most important ones are:
@@ -73,7 +73,7 @@
         \item \textbf{Strike Price} -- agreed price at which the derivative underlying asset can be bought or sold (depends on a type of option) when it is exercised.
     \end{itemize}
     
-    Further division into option types depends on when the option can be exercised. The most basic one is \textbf{European}-style option -- decision whether option will or will not be exercised is made at the time of option's expiry. Continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in \textbf{Burmudan} Option -- contract can be exercised at specific days before the expiration. In this paper European Options will be presented \cite{Option_Types}.
+    Further division into option types depends on when the option can be exercised. The most basic one is \textbf{European}-style option -- decision whether option will or will not be exercised is made at the time of option's expiry. Continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in \textbf{Burmudan} Option -- contract can be exercised at specific days before the expiration. In this paper European Options will be presented (more about option types here \cite{Option_Types}).
 
 \section{Black-Scholes Model}
     The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 major economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel prize for economics in 1997. Certainly same would happen for Black if sadly it was not for his death in 1975).
@@ -97,15 +97,14 @@
     \]
     where:
     \begin{itemize}
-        \item $C$ - call option price
-        \item $P$ - put option price
-        \item $S_0$ - underlying asset price at the time being
-        \item $\phi()$ - standardized cumulative normal distribution
-        \item $K$ - strike price
-        \item $r$ - risk free rate (1\% represented as 0.01)
-        \item $t$ - time to maturity in years (18 months represented as 1.5)
-        \item $\sigma$ - volatility (20\% represented as 0.2)
-    
+        \item $C$ - call option price,
+        \item $P$ - put option price,
+        \item $S_0$ - underlying asset price at the time being,
+        \item $\phi()$ - standardized cumulative normal distribution,
+        \item $K$ - strike price,
+        \item $r$ - risk free rate (1\% represented as 0.01),
+        \item $t$ - time to maturity in years (18 months represented as 1.5),
+        \item $\sigma$ - volatility (20\% represented as 0.2).
     \end{itemize}
     
     The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows geometric Brownian motion with constant drift and volatility. 
