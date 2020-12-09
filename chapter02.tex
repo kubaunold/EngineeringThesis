@@ -6,7 +6,7 @@
     
     \subsection{Random Walk}
         In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, see more detail here \cite{randomWalk}.
-        
+        %
         If 1-dimensional space is considered, then it is best to present the action on the number line.
         \begin{figure}[H]
             \centering
@@ -15,7 +15,7 @@
             \caption*{$P$ stands for \textit{Position}.}
             \label{fig:numberLine_start}
         \end{figure}
-        
+        %
         Random walk starts at the point 0 (fig. \ref{fig:numberLine_start}). Then there occur $N$ steps, $N \in \mathbb{N}_+$, and each of them is likely to move to the right ($+1$) or to the left ($-1$) by 50\%. Example outcome after 4 steps could be as follows:
         
         \begin{figure}[H]
@@ -24,22 +24,25 @@
             \caption{Sample outcome for $N=4$.}
             \label{fig:numberLine_end}
         \end{figure}
-        
+        %
         In this example steps could be described as $a_1 = a_2 = a_3 = 1$ and $a_4 = -1$, meaning first 3 steps were to the right, while the last one was to the left. The outcome (position of the green dot after all steps) is $P_4 = 2$ (fig. \ref{fig:numberLine_end}).
-        
+        %
         Therefore, the position of the green dot can specified by the following formula:
         \[  % \ldots looks better than ...
         P_N = a_1 + a_2 + a_3 + \ldots + a_N
+        .
         \]
-        
+        %
         \textit{Random Walk} $RW$ can then defined as the following series:
         \[
         RW = \{P_n, n \in N\}
+        .
         \]
         %
         Since each move has the same probability to be $-1$ or $1$ then the expected value of such series (final position of the dot) can be easily calculated:
         \[
         \mathbb{E}(RW) = 0
+        .
         \]
         
         An interesting observation can be made when calculating estimated value of a series that is the same as \textit{Random Walk} but its values are squares of original values.
@@ -47,8 +50,9 @@
         Then:
         \[
         \mathbb{E}({RW}^2) = \sum_{i=1}^{N} a_{i} + 2*\sum_{1 \leq i \leq j \leq N}^{N} a_{i}*a_{j} = N
+        .
         \]
-        
+        %
         Therefore, the average distance, that the dot will appear on at the end of the walk will be at \(\sqrt{N}\) blocks from the starting position.
         
     \subsection{Wiener Process}
@@ -77,7 +81,7 @@
 
 \section{Black-Scholes Model}
     The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 major economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel prize for economics in 1997. Certainly same would happen for Black if sadly it was not for his death in 1975).
-    
+    %
     Their model was a significant breakthrough in world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
     
     This thesis' aim was not to goo deep into understanding the mathematical background behind the model but rather implement the model in a practical tool that one would be able to effectively use. Therefore more information and specifics can be found either in the original publication \cite{10.2307/1831029} of the model from 1973 in \textit{The Pricing of Options and Corporate Liabilities} of the Journal of Political Economy by Fischer Black and Myron Scholes.
@@ -106,6 +110,6 @@
         \item $t$ - time to maturity in years (18 months represented as 1.5),
         \item $\sigma$ - volatility (20\% represented as 0.2).
     \end{itemize}
-    
+    %
     The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows geometric Brownian motion with constant drift and volatility. 
     \todo{diff eq thats at the core of the model as curiosity}
