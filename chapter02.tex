@@ -2,7 +2,9 @@
 %\section{Theoretical background}
 
 \section{Geometric Brownian Motion}
-    \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock price). In order to well define what a \textit{GBM} is, it essential to first describe several terms that will help further understanding.
+        
+    \subsection{Geometric Brownian Motion -- Introduction}
+        \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock price). In order to well define what a \textit{GBM} is, it essential to first describe several terms that will help further understanding.
     
     \subsection{Random Walk}
         In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, see more detail here \cite{randomWalk}.
@@ -61,7 +63,88 @@
         \textit{Wiener Process}, as well as \textit{Random Walk}, starts at 0 (\( W(0) = 0 \)) and its increment follows Gaussian distribution with mean \(0\) and variance \(t-s\) for any \(0\leq s < t \) (more info here \cite{wienerProcess}).
         %
         This way a \textit{Brownian Motion} is basically a \textit{Random Walk} with steps which sizes are random.
+    \subsection{Geometric Brownian Motion -- Explanation}
+        Finally, having \textit{Standard Brownian Motion} covered, it is right time to explain what the Geometric version is. One of the biggest disadvantages of the Wiener Process is the fact that it can reach negative values. When treated as a tool for simulating stock prices, such a flaw is disqualifying. Otherwise, it might lead to a situation, where certain stock's price goes below zero which would mean that one might actually get paid in order to obtain shares in the ownership of some corporation. Such a scenario never happens in reality, in contrast to interest rates (more information about negative interest rates can be found here: \cite{negativeInterestRates}).
         
+        \textit{Geometric Brownian Motion} is a stochastic process, also called \textit{Exponential Brownian Motion} due to the exponent occurring in its formula:
+        \[
+        S_t = S_0e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
+        ,
+        \]
+        where:
+        \begin{itemize}
+        \item $S_t$ - underlying asset price at the moment $t$,
+        \item $S_0$ - underlying asset price at the beginning ($t=0$),
+        \item $\mu$ - drift (7\% represented as 0.07),
+        \item $\sigma$ - volatility (20\% represented as 0.2),
+        \item $W_t$ - Wiener process' (Standard Brownian Motion) value at the moment $t$.
+    \end{itemize}
+    %
+    Key to understanding constant parameters $\mu$ -- drift and $\sigma$ -- volatility is to pair the former with modelling deterministic trends while the latter with the amount of unpredictable events occurrences during the motion (more information about \textit{GBM} can be found here \cite{gbm}).
+    
+    To create \textit{Geometric Brownian Motion}, \textit{Wiener Process} based on random normal variables is required. Since, in F\# language there is no default library containing such variables generator, one can use Box-Muller Transform, that for two independently uniformly distributed random variables $U_1$ and $U_2$ from the interval $[0,1]$ creates 2 independent, \textbf{normal} random variables $N_1$ and $N_2$:
+    \[
+    N_1 = \sqrt{-2\ln{U_1}}\sin(2\pi U_2), N_2 = \sqrt{-2\ln{U_1}}\cos(2\pi U_2)
+    .
+    \]
+    
+    Undermentioned listing shows possible implementation of \textit{GBM}.
+    \begin{lstlisting}[language=FSharp, label={lst:gbm}, caption=F\# implementation of \textit{Geometric Brownian Motion}.]
+//generates list of n Uniform RVs from interval [0,1]; here it's [0,1)
+let genRandomNumbersNominalInterval (count:int) (seed:int) : float list =
+    let rnd = System.Random(seed)
+    List.init count (fun _ -> rnd.NextDouble())
+//input: UniformRM need to be from interval (0,1]
+//input: steps must be even
+//output: NormalRV have mean=0 and standard_deviation=1
+let normalizeRec (uniformList:float list) (n:int) : float list =
+    let rec buildNormalList (normalList:float list) =
+        if normalList.Length = n then normalList
+        else
+            let currentNIdOne = normalList.Length
+            let currentNIdTwo = currentNIdOne + 1
+            let oneU = uniformList.[currentNIdOne]
+            let twoU = uniformList.[currentNIdTwo]
+            let oneN = sqrt(-2.*Math.Log(oneU, Math.E))*sin(2.*Math.PI*twoU)
+            let twoN = sqrt(-2.*Math.Log(oneU, Math.E))*cos(2.*Math.PI*twoU)
+            let newUniforms = [oneN; twoN]
+            buildNormalList (normalList@newUniforms)
+        buildNormalList []
+let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) (years:float) (seed:int) =
+    let normalRV = normalizeRec (genRandomNumbersNominalInterval steps seed) steps
+    //build stock prices list
+    let rec buildStockPricesList (currentStockPricesList:float list) (steps:int) (normalId:int) : float list =
+        if normalId = steps-1 then currentStockPricesList
+        else
+            let firstExpTerm =  (drift - (vol**2.)/2.) * (float(years)/float(steps))
+            let secondExpTerm =  vol * sqrt(float(years)/float(steps)) * normalRV.[normalId]
+            let newStockPrice = currentStockPricesList.[normalId] * Math.E ** (firstExpTerm + secondExpTerm)
+            buildStockPricesList (currentStockPricesList@[newStockPrice]) steps (normalId+1)
+    let stockPricesList = buildStockPricesList [price] steps 0
+    stockPricesList
+        \end{lstlisting}
+    %
+    Figures \ref{fig:gbm_dri} and \ref{fig:gbm_vol} show how parameters such as drift and volatility affect trends generated by \textit{GBM}. While drift ($\mu$) is responsible for overall trend (whether stock prices rise overtime ($\mu$ > 0) or drop very rapidly ($\mu$ << 0)), volatility is a parameter describing dispersion of values. If it is high, then the dispersion is high as well (see red trend on \ref{fig:gbm_vol}).
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/gbm_dri_06_02andm08.png}
+            \caption{\textit{GBM} trends when drift ($\mu$ parameter) is changing:}
+            \caption*{blue: $\mu = 0.6$,}
+            \caption*{red: $\mu = 0.2$,}
+            \caption*{yellow: $\mu = -0.8$.}
+            \label{fig:gbm_dri}
+        \end{figure}
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/gbm_vol_08_02andm03.png}
+            \caption{\textit{GBM} trends when volatility ($\sigma$ parameter) is changing:}
+            \caption*{red: $\mu = 0.8$,}
+            \caption*{blue: $\mu = 0.2$,}
+            \caption*{yellow: $\mu = -0.3$.}
+            \label{fig:gbm_vol}
+        \end{figure}
+    
 \section{Options}
     Options are some of the most popular derivative financial instruments. Derivative means in this example that it's value is reliant upon an underlying asset. The most important thing about options, one that distinguishes them from other derivative instruments it the \textbf{optionality} -- contract can, be is not obligatory to be made.
     
@@ -76,9 +159,75 @@
         \item \textbf{Expiration Date} -- Specific moment in time by which the holder of the option has to decide whether he wants to exercise (use) the option.
         \item \textbf{Strike Price} -- agreed price at which the derivative underlying asset can be bought or sold (depends on a type of option) when it is exercised.
     \end{itemize}
-    
+    %
     Further division into option types depends on when the option can be exercised. The most basic one is \textbf{European}-style option -- decision whether option will or will not be exercised is made at the time of option's expiry. Continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in \textbf{Burmudan} Option -- contract can be exercised at specific days before the expiration. In this paper European Options will be presented (more about option types here \cite{Option_Types}).
+    
+    Code implementing options is as follows:
+    \begin{lstlisting}[language=FSharp, label={lst:option}, caption=F\# implementation of an option.]
+type CallOrPutFlag =
+    | Call
+    | Put
+    override this.ToString() =
+               match this with
+               | Call -> "Call"
+               | Put -> "Put"
+               
+type OptionRecord =
+    (* Model for Option Record. *)
+    {
+        OptionName:     string
+        Expiry:         DateTime
+        Strike:         float
+        CallOrPutFlag:  CallOrPutFlag
+        StockPrice:     float
+        UnderlyingStock:Stock
+    }
 
+    (* Simple utility method for creating a random option. *)
+    static member sysRandom = System.Random()
+    static member Random (calc : CalculationParameters) (market : MarketData) =
+        let rnd  = System.Random()
+        (* Below OptionRecord type  will be returned *)
+        {
+            OptionName      = sprintf "Option%03d" (OptionRecord.sysRandom.Next(999))
+            Expiry          = (DateTime.Now.AddMonths(OptionRecord.sysRandom.Next(2, 12))).Date
+            Strike          =
+                let s =
+                    match market.TryFind "stock::price" with
+                    | Some price -> float price
+                    | None -> 6.70  // default 6.70$ for stock price
+                s*1.1   //Strike price is 110% of stock price
+            
+            CallOrPutFlag   = 
+                if rnd.Next()%2 |> System.Convert.ToBoolean then
+                    Call
+                else
+                    Put
+            
+            StockPrice      =
+                let s =
+                    match market.TryFind "stock::price" with
+                    | Some price -> float price
+                    | None -> 6.70  // default 6.70$ for stock price
+                s
+            UnderlyingStock = Stock.Random (calc: CalculationParameters) (market : MarketData)
+        }
+    \end{lstlisting}
+    %
+    Before an option is generated, user is able to specify parameters affecting the calculation, as show in the fig. \ref{fig:parametersPresentation}.
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/specifyParameters.png}
+            \caption{Parameters specification for options generation and valuation.}
+            \label{fig:parametersPresentation}
+    \end{figure}
+    Generating options presents as follows:
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/optionsPresentation.png}
+            \caption{Options view in the application.}
+            \label{fig:optionsPresentation}
+    \end{figure}
 \section{Black-Scholes Model}
     The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 major economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel prize for economics in 1997. Certainly same would happen for Black if sadly it was not for his death in 1975).
     %
@@ -88,10 +237,10 @@
     
     Main formula of the model used for option pricing is as follows:
     \[
-    C = S_0\phi(d_1) - Ke^{-rT}\phi(d_2)
+    C = S_0\phi(d_1) - Ke^{-rt}\phi(d_2)
     \]
     \[
-    P = -S_0\phi(-d_1) + Ke^{-rT}\phi(-d_2)
+    P = -S_0\phi(-d_1) + Ke^{-rt}\phi(-d_2)
     \]
     \[
     d_1 = ln\frac{S_0}{K} + (r+\frac{\sigma^2}{2})t
@@ -111,5 +260,25 @@
         \item $\sigma$ - volatility (20\% represented as 0.2).
     \end{itemize}
     %
-    The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows geometric Brownian motion with constant drift and volatility. 
-    \todo{diff eq thats at the core of the model as curiosity}
+    The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows \textit{Geometric Brownian Motion} with constant drift and volatility. 
+    % \todo{diff eq thats at the core of the model as curiosity}
+    %
+    Simple analytical formula allows the model to be written in several lines of code thanks to the functional paradigm of the F\# language.
+    \begin{lstlisting}[language=FSharp, label={lst:bsm}, caption=F\# implementation of \textit{Black--Scholes Model}.]
+    (* Black-Scholes for Option Valuation
+    Parameters:
+        call_or_put_flag (CallOrPutFlag):
+            Flag that determines whether this option is put or call
+        s0 (float): Underlying asset price at the time being
+        k (float): strike price
+        t (float): expiry date (counted in years from now on, e.g. 1.5)
+        r (float): risk free rate (e.g. 0.05 means 5%)
+        v (float): volatility (e.g. 0.2 means 20%)
+    *)
+    member this.BlackScholes() : float =
+        let d1 = ( log(s0/k) + (r+v*v/2.)*t) / (v*sqrt(t))
+        let d2 = d1 - v*sqrt(t)
+        match call_or_put_flag with
+        | Call -> s0*fi(d1) - k*exp(-r*t)*fi(d2)
+        | Put ->  k*exp(-r*t)*fi(-d2) - s0*fi(-d1)
+    \end{lstlisting}
