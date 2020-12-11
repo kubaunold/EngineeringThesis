@@ -14,22 +14,29 @@
     \emph{Keywords: functional programming, financial instruments, pricing, MVVM, Black-Scholes, Black}
 
 \section{Thesis assumptions}
-    The main goal is to create a tool in functional programming paradigm which will be used to price selected financial instruments. To achieve this goal F\# programming language will be used as it was created mostly to support functional programming.
-    
+    The main goal is to create a tool in functional programming paradigm which will be used to price selected financial instruments. To achieve this goal F\# programming language will be used as it was created mostly to support functional programming and European option will be priced as an example of a derivative financial instrument.
+    %
     App will consist of several different technologies such as MVVM design pattern, XAML language to create View part of the project and minor C\# background to connect XAML's View with F\#'s ViewModel. Everything will be written in Visual Studio 2019 IDE.
     
     Basic assumptions within the application include:
     \begin{itemize}
-    \item Ability to specialize the product (maturity date, strike price, underlying asset price).
-    \item Implementing Black-Scholes model to price options.
-    \todo{Add GBM}
-    \todo{Add several greeks}
+        \item \textit{Geometric Brownian Motion} implementation as a model used for generating underlying asset prices.
+        \item Ability to specialize the product by changing:
+            \begin{itemize}
+                \item maturity (expiration time),
+                \item interest rate,
+                \item stock's initial price,
+                \item drift,
+                \item volatility.
+            \end{itemize}
+        \item Implementing Black-Scholes model for option pricing.
+        \item Preparation of the application's graphic design in XAML and connecting the View with logic.
     \end{itemize}
 
-\section{Scope of the thesis}
-    \todo{fill in at the end}
-    In chapter 1 - blabla
-    In chapter 2 I will talk about blablah
+% \section{Scope of the thesis}
+%     \todo{fill in at the end}
+%     In chapter 1 - blabla
+%     In chapter 2 I will talk about blablah
 
 \section{Technologies Overview}
 \subsection{Programming paradigms}
@@ -197,18 +204,18 @@
             namespace ViewModel
             // lines of code
         \end{lstlisting}
-        
+        %
         Alternative syntax could be using F\# \textit{module} declaration what is rather more common nowadays that OOP-resembling \textit{namespace} like so:
-        
+        %
         \begin{lstlisting}[language=FSharp, label={lst:model2}, caption=F\# alternative example \textit{ViewModel} project component beginning.]
             module MARSApp.ViewModel.ConfigurationViewModel
             open MARSApp.ViewModel.ViewModelBase
             open MARSApp.Model.ConfigurationModel
             // lines of code
         \end{lstlisting}
-        
+        %
         Although the difference and these code fragments \ref{lst:model1} \ref{lst:model2} may seem unimportant, there is a tremendous reason behind choosing the first one -- since the project contains GUI written in XAML there is need to specify in the view where certain properties can be found. It turns out there is a major problem if the properties lay hidden inside a module. When they are presented in a namespace it is easier to bind them with XAML as it is adapted to receive a \textit{namespace} declaration in the \textit{Window} heading:
-        
+        %
         \begin{figure}[H]
             \centering
             \includegraphics{img/viewmodel_namespace.png}
