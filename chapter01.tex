@@ -39,60 +39,68 @@
 %     In chapter 2 I will talk about blablah
 
 \section{Technologies Overview}
-\subsection{Programming paradigms}
-    A programming paradigm is nothing more but an overall concept which describes \textit{how} the programming is done and what is the methodology behind the language that adheres to a specific type of a paradigm. Throughout the years programming languages evolved, new ones have been created, so that today there are from 150, according to TIOBE Programming Community, up to 700, listed by Wikipedia, different programming languages (more information can be found here \cite{numberOfProgrammingLanguages}). Although some sources, e.g. \cite{numberOfProgrammingLanguages_hopl_info}, state that there are almost as many as 9000 (sic) programming languages the exact number of those is not that important -- rather the variety and the sheer number of them is crucial as it indicates that they must differ from each other and it turns out these differences can somehow be grouped, what is presented below.
-    
-    The most basic and intuitive approach into dividing the paradigms into 2 basic groups seems to be this one:
-    \begin{itemize}
-        \item Imperative Programming,
-        \item Declarative Programming.
-    \end{itemize}
+    \subsection{Programming paradigms}
+        A programming paradigm is nothing more but an overall concept which describes \textit{how} the programming is done and what is the methodology behind the language that adheres to a specific type of a paradigm. Throughout the years programming languages evolved, new ones have been created, so that today there are from 150, according to TIOBE Programming Community, up to 700, listed by Wikipedia, different programming languages (more information can be found here \cite{numberOfProgrammingLanguages}). Although some sources, e.g. \cite{numberOfProgrammingLanguages_hopl_info}, state that there are almost as many as 9000 (sic) programming languages the exact number of those is not that important -- rather the variety and the sheer number of them is crucial as it indicates that they must differ from each other and it turns out these differences can somehow be grouped, what is presented below.
+        
+        The most basic and intuitive approach into dividing the paradigms into 2 basic groups seems to be this one:
+        \begin{itemize}
+            \item Imperative Programming,
+            \item Declarative Programming.
+        \end{itemize}
     
     \subsubsection{Imperative Programming}
-    This way of programming is not by accident described as the first one -- historically languages that present this type of programming have emerged primarily. Imperative programming enables the programmer to manage processor's behavior on much more precise level. The commands show step-by-step how the computation is executed. These commands affect a program's state. This paradigm focuses on describing \textit{how} the goal should be achieved.
-    
-    Imperative programming can be further broken down into 3 groups:
-    \begin{enumerate}
-        \item \textbf{Procedural Programming} -- the underlying model is based on a procedure (set of coded instructions, more in \cite{procedureDefinition}). It has the ability to use once written code again. The examples of procedural programming examples include:
-            \begin{itemize}
-                \item C,
-                \item C++,
-                \item Java,
-                \item ColdFusion,
-                \item Pascal.
-            \end{itemize}
-        \item \textbf{Object Oriented Programming} -- a program is a set of classes and objects (instances of a class) that are meant to interact with each other. The examples of languages supporting OOP include:
-            \begin{itemize}
-                \item Objective-C,
-                \item C++,
-                \item Java,
-                \item Visual Basic .NET,
-                \item Python.
-            \end{itemize}
-        \item \textbf{Parallel Processing Approach} -- this style of programming is designed to divide computing the code into multiple processors in order to minimize the time required for computation. The examples of languages supporting parallel programming approach include:
-            \begin{itemize}
-                \item NESL,
-                \item C,
-                \item C++.
-            \end{itemize}
-    \end{enumerate}
+        This way of programming is not by accident described as the first one -- historically languages that present this type of programming have emerged primarily. Imperative programming enables the programmer to manage processor's behavior on much more precise level. The commands show step-by-step how the computation is executed. These commands affect a program's state. This paradigm focuses on describing \textit{how} the goal should be achieved.
+        
+        Imperative programming can be further broken down into 3 groups:
+        \begin{enumerate}
+            \item \textbf{Procedural Programming} -- the underlying model is based on a procedure (set of coded instructions, more in \cite{procedureDefinition}). It has the ability to use once written code again. The examples of procedural programming examples include:
+                \begin{itemize}
+                    \item C,
+                    \item C++,
+                    \item Java,
+                    \item ColdFusion,
+                    \item Pascal.
+                \end{itemize}
+            \item \textbf{Object Oriented Programming} -- a program is a set of classes and objects (instances of a class) that are meant to interact with each other. The examples of languages supporting OOP include:
+                \begin{itemize}
+                    \item Objective-C,
+                    \item C++,
+                    \item Java,
+                    \item Visual Basic .NET,
+                    \item Python.
+                \end{itemize}
+            \item \textbf{Parallel Processing Approach} -- this style of programming is designed to divide computing the code into multiple processors in order to minimize the time required for computation. The examples of languages supporting parallel programming approach include:
+                \begin{itemize}
+                    \item NESL,
+                    \item C,
+                    \item C++.
+                \end{itemize}
+        \end{enumerate}
     
     \subsubsection{Declarative Programming}
-    On the other hand a programmer may want to focus not on \textit{how} the code should be ran on a computer but rather what \textit{what the result should look like} and the way of obtaining it is not the most important thing. One would rather give it up to the compiler to decide what is the best way of achieving the result. Declarative programming is also consisted of smaller groups, such as:
-    \begin{enumerate}
-        \item \textbf{Logic Programming} -- in logic programming the programmer has knowledge, expressed in a logical form, about facts and rules concerning a specific problem, more detail here \cite{logicProgramming}. This type of programming resembles a mathematical proof. \textbf{Prolog} language is an example of this programming paradigm.
-        
-        \item \textbf{Database-Driven Programming Approach} -- it is based on storing the data and moving it, as well as about keeping information about the relations among entities. \textbf{SQL} is one of the most popular examples of this programming group.
-        
-        \item \textbf{Functional Programming} -- like object in object-related programming in functional programming the most basic unit is a function. Shared state is avoided, as well as mutable data (the programmer is unable to crate a variable). The examples of functional programming paradigm:
-            \begin{itemize}
-                \item F\#,
-                \item Haskell,
-                \item Common Lisp,
-                \item OCaml,
-                \item Racket.
-            \end{itemize}
-    \end{enumerate}
+        On the other hand a programmer may want to focus not on \textit{how} the code should be ran on a computer but rather what \textit{what the result should look like} and the way of obtaining it is not the most important thing. One would rather give it up to the compiler to decide what is the best way of achieving the result. Declarative programming is also consisted of smaller groups, such as:
+        \begin{enumerate}
+            \item \textbf{Logic Programming} -- in logic programming the programmer has knowledge, expressed in a logical form, about facts and rules concerning a specific problem, more details here \cite{logicProgramming}. This type of programming resembles a mathematical proof. \textbf{Prolog} language is an example of this programming paradigm.
+            
+            \item \textbf{Database-Driven Programming Approach} -- it is based on storing the data and moving it, as well as about keeping information about the relations among entities. \textbf{SQL} is one of the most popular examples of this programming group.
+            
+            \item \textbf{Functional Programming} -- like object in object-related programming in functional programming the most basic unit is a function. Shared state is avoided, as well as mutable data (the programmer is unable to crate a variable). The examples of functional programming paradigm:
+                \begin{itemize}
+                    \item F\#,
+                    \item Haskell,
+                    \item Common Lisp,
+                    \item OCaml,
+                    \item Racket.
+                \end{itemize}
+        \end{enumerate}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/tiobe_index.png}
+        \caption{The most popular languages and their trends.}
+        \caption*{Source: \url{https://www.tiobe.com/tiobe-index/}}
+        \label{fig:tioebeIndex}
+    \end{figure}
 
 \subsection{F\#}
     F\# is a programming language that was created back in 2005 by Don Syme in cooperation with Microsoft Research. Although it is a multi-paradigm programming language it best fits the functional, declarative programming group. It is open-source and belongs to .NET Framework (more information here \cite{WhatIsFSharp},  \cite{FSharpWiki}).
@@ -200,16 +208,16 @@
         \end{figure} 
         
     \subsubsection{ViewModel}    
-        Last but surely not least the \textit{ViewModel} serves a role of a so-called \textit{bridge} between \textit{View} and the \textit{Model}. It binds the graphical presentation of the components with hidden back-end logic. It must hold a reference to the \textit{Model} project of the solution. It is extremely important for the programmer to design proper updates of data presented in corresponding graphic fields. \textit{INotifyPropertyChanged} interface is perfect for this purpose. It makes sure no change in the data filed will go unnoticed if it is able to see it anywhere in the app by the user.
+        Last but surely not least the \textit{ViewModel} serves a role of a so-called \textit{bridge} between \textit{View} and the \textit{Model}. It binds the graphical presentation of the components with hidden back-end logic. It must hold a reference to the \textit{Model} project of the solution. It is extremely important for the programmer to design proper updates of data presented in corresponding graphic fields. \textit{INotifyPropertyChanged} interface is perfect for this purpose. It makes sure no change in the data filed will go unnoticed if it can be seen anywhere in the app by the user.
         
-        It consists of multiple files responsible for specific purposes, all starting with line:
+        It consists of multiple files responsible for specific purposes, all starting with the line:
         
         \begin{lstlisting}[language=FSharp, label={lst:model1}, caption=F\# all \textit{ViewModel} project components beginning.]
             namespace ViewModel
             // lines of code
         \end{lstlisting}
         %
-        Alternative syntax could be using F\# \textit{module} declaration what is rather more common nowadays that OOP-resembling \textit{namespace} like so:
+        An alternative notation would be to use F\# \textit{module} declaration, as in an example below. Such practice in more common nowadays than OOP-resembling \textit{namespace}.
         %
         \begin{lstlisting}[language=FSharp, label={lst:model2}, caption=F\# alternative example \textit{ViewModel} project component beginning.]
             module MARSApp.ViewModel.ConfigurationViewModel
@@ -218,8 +226,7 @@
             // lines of code
         \end{lstlisting}
         %
-        Although the difference and these code fragments \ref{lst:model1} \ref{lst:model2} may seem unimportant, there is a tremendous reason behind choosing the first one -- since the project contains GUI written in XAML there is need to specify in the view where certain properties can be found. It turns out there is a major problem if the properties lay hidden inside a module. When they are presented in a namespace it is easier to bind them with XAML as it is adapted to receive a \textit{namespace} declaration in the \textit{Window} heading:
-        %
+        Although the difference and these code fragments \ref{lst:model1} \ref{lst:model2} may seem unimportant, there is a solid reason for choosing the first one -- since the project contains GUI written in XAML there is a need to specify in the view where certain properties can be found. It turns out there is a major problem if the properties lay hidden inside a module. When they are presented in a namespace it is easier to bind them with XAML as it is adapted to receive a \textit{namespace} declaration in the \textit{Window} heading:
         \begin{figure}[H]
             \centering
             \includegraphics{img/viewmodel_namespace.png}
@@ -227,11 +234,7 @@
             \caption*{Source: \textit{MARS App}}
             \label{fig:viewmodel_namespace}
         \end{figure}
-        %
-        The reference would be much harder to achieve if \textit{module} approach was used.
-        %
-        For the sake of implementing \textit{ViewModel} in this example the same default VS19 project was used as in \textit{Model} project.
-        
+        The reference would be much harder to achieve if \textit{module} approach was used. For the sake of implementing \textit{ViewModel} in this example the same default VS19 project was used as in \textit{Model} project.
         \begin{figure}[H]
             \centering
             \includegraphics{img/viewmodel.png}
@@ -241,7 +244,7 @@
         \end{figure} 
     
 \subsection{XAML}
-    \textit{XAML} stands for Extensible Application Markup Language and belongs to declarative markup language group. It is used in \textit{WPF} (\textit{Windows Presentation Forms} -- User Interface framework for creating desktop client applications, for more detail go there \cite{wpf}) for separating between how an application looks like and how it behaves (see here how xaml works \cite{how_xaml_works}) (both the GUI and its behavior were created in the same language). \textit{XAML} is an subset of \textit{XML}, because every \textit{XAML} file is as well a \textit{XML} file, but not every \textit{XML} file is a \textit{XAML} file.
+    \textit{XAML} stands for Extensible Application Markup Language and belongs to the declarative markup language group. It is used in \textit{WPF} (\textit{Windows Presentation Forms} -- User Interface framework for creating desktop client applications, more details here \cite{wpf}) for separating between how an application looks like and how it behaves (more how \textit{XAML} works in \cite{how_xaml_works}) (both the GUI and its behavior were created in the same language). \textit{XAML} is an subset of \textit{XML}, because every \textit{XAML} file is as well a \textit{XML} file, but not every \textit{XML} file is a \textit{XAML} file.
     
     \textit{XAML} may resemble \textit{HTML}, although the idea behind those two is utterly different -- by comparing \textit{XML} to \textit{HTML} one can observe that:
     \begin{itemize}

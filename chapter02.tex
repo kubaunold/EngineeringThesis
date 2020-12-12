@@ -4,10 +4,10 @@
 \section{Geometric Brownian Motion}
         
     \subsection{Geometric Brownian Motion -- Introduction}
-        \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock price). In order to well define what a \textit{GBM} is, it essential to first describe several terms that will help further understanding.
+        \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock prices). In order to define correctly what a \textit{GBM} is, it is essential to first describe several terms that will help further understanding.
     
     \subsection{Random Walk}
-        In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, see more detail here \cite{randomWalk}.
+        In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, more details here \cite{randomWalk}.
         %
         If 1-dimensional space is considered, then it is best to present the action on the number line.
         \begin{figure}[H]
@@ -18,8 +18,8 @@
             \label{fig:numberLine_start}
         \end{figure}
         %
-        Random walk starts at the point 0 (fig. \ref{fig:numberLine_start}). Then there occur $N$ steps, $N \in \mathbb{N}_+$, and each of them is likely to move to the right ($+1$) or to the left ($-1$) by 50\%. Example outcome after 4 steps could be as follows:
-        
+        Random walk starts at the point 0 (fig. \ref{fig:numberLine_start}). Then there occur $N$ steps, $N \in \mathbb{N}_+$, and each of them is likely to move to the right ($+1$) or to the left ($-1$) by 50\%. The exemplary outcome after 4 steps could be as follows:
+        %
         \begin{figure}[H]
             \centering
             \includegraphics{img/numberLine_end.png}
@@ -27,9 +27,9 @@
             \label{fig:numberLine_end}
         \end{figure}
         %
-        In this example steps could be described as $a_1 = a_2 = a_3 = 1$ and $a_4 = -1$, meaning first 3 steps were to the right, while the last one was to the left. The outcome (position of the green dot after all steps) is $P_4 = 2$ (fig. \ref{fig:numberLine_end}).
+        In this example the steps could be described as $a_1 = a_2 = a_3 = 1$ and $a_4 = -1$, meaning the first 3 steps were to the right, while the last one was to the left. The outcome (position of the green dot after all the steps) is $P_4 = 2$ (fig. \ref{fig:numberLine_end}).
         %
-        Therefore, the position of the green dot can specified by the following formula:
+        Therefore, the position of the green dot can be specified by the following formula:
         \[  % \ldots looks better than ...
         P_N = a_1 + a_2 + a_3 + \ldots + a_N
         .
@@ -41,13 +41,13 @@
         .
         \]
         %
-        Since each move has the same probability to be $-1$ or $1$ then the expected value of such series (final position of the dot) can be easily calculated:
+        Since each move has the same probability to be $-1$ or $1$ then the expected value of such series (the final position of the dot) can be easily calculated:
         \[
         \mathbb{E}(RW) = 0
         .
         \]
         
-        An interesting observation can be made when calculating estimated value of a series that is the same as \textit{Random Walk} but its values are squares of original values.
+        An interesting observation can be made when calculating an estimated value of a series that is the same as \textit{Random Walk} but its values are squares of the original values.
         % I should use \(...\) instead of $...$
         Then:
         \[
@@ -55,16 +55,16 @@
         .
         \]
         %
-        Therefore, the average distance, that the dot will appear on at the end of the walk will be at \(\sqrt{N}\) blocks from the starting position.
+        Therefore, the average distance that the dot will appear on at the end of the walk will be at \(\sqrt{N}\) blocks from the starting position.
         
     \subsection{Wiener Process}
-        \textit{Wiener Process} is also usually called \textit{Standard Brownian Motion}. It is a continuous-time stochastic process named after Norbert Wiener for his work on 1D \textit{Brownian Motion}.
+        The \textit{Wiener Process} is also usually called the \textit{Standard Brownian Motion}. It is a continuous-time stochastic process named after Norbert Wiener for his work on 1D \textit{Brownian Motion}.
         %
-        \textit{Wiener Process}, as well as \textit{Random Walk}, starts at 0 (\( W(0) = 0 \)) and its increment follows Gaussian distribution with mean \(0\) and variance \(t-s\) for any \(0\leq s < t \) (more info here \cite{wienerProcess}).
+        \textit{Wiener Process}, as well as \textit{Random Walk}, starts at 0 (\( W(0) = 0 \)) and its increment follows Gaussian distribution with mean \(0\) and variance \(t-s\) for any \(0\leq s < t \) (more details here \cite{wienerProcess}).
         %
         This way a \textit{Brownian Motion} is basically a \textit{Random Walk} with steps which sizes are random.
     \subsection{Geometric Brownian Motion -- Explanation}
-        Finally, having \textit{Standard Brownian Motion} covered, it is right time to explain what the Geometric version is. One of the biggest disadvantages of the Wiener Process is the fact that it can reach negative values. When treated as a tool for simulating stock prices, such a flaw is disqualifying. Otherwise, it might lead to a situation, where certain stock's price goes below zero which would mean that one might actually get paid in order to obtain shares in the ownership of some corporation. Such a scenario never happens in reality, in contrast to interest rates (more information about negative interest rates can be found here: \cite{negativeInterestRates}).
+        Finally, having \textit{Standard Brownian Motion} covered, it is the right time to explain what the Geometric version is. One of the biggest disadvantages of the Wiener Process is the fact that it can reach negative values. When treated as a tool for simulating stock prices, such a flaw is disqualifying. Otherwise, it might lead to a situation, where certain stock's price goes below zero which would mean that one might actually get paid in order to obtain shares in the ownership of some corporation. Such a scenario never happens in reality, in contrast to interest rates (more information about negative interest rates can be found here: \cite{negativeInterestRates}).
         
         \textit{Geometric Brownian Motion} is a stochastic process, also called \textit{Exponential Brownian Motion} due to the exponent occurring in its formula:
         \[
@@ -80,7 +80,7 @@
         \item $W_t$ - Wiener process' (Standard Brownian Motion) value at the moment $t$.
     \end{itemize}
     %
-    Key to understanding constant parameters $\mu$ -- drift and $\sigma$ -- volatility is to pair the former with modelling deterministic trends while the latter with the amount of unpredictable events occurrences during the motion (more information about \textit{GBM} can be found here \cite{gbm}).
+    The key to understanding constant parameters $\mu$ -- drift and $\sigma$ -- volatility is to pair the former with modeling deterministic trends while the latter with the amount of unpredictable events occurrences during the motion (more information about \textit{GBM} can be found here \cite{gbm}).
     
     To create \textit{Geometric Brownian Motion}, \textit{Wiener Process} based on random normal variables is required. Since, in F\# language there is no default library containing such variables generator, one can use Box-Muller Transform, that for two independently uniformly distributed random variables $U_1$ and $U_2$ from the interval $[0,1]$ creates 2 independent, \textbf{normal} random variables $N_1$ and $N_2$:
     \[
@@ -124,7 +124,7 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
     stockPricesList
         \end{lstlisting}
     %
-    Figures \ref{fig:gbm_dri} and \ref{fig:gbm_vol} show how parameters such as drift and volatility affect trends generated by \textit{GBM}. While drift ($\mu$) is responsible for overall trend (whether stock prices rise overtime ($\mu$ > 0) or drop very rapidly ($\mu$ << 0)), volatility is a parameter describing dispersion of values. If it is high, then the dispersion is high as well (see red trend on \ref{fig:gbm_vol}).
+    Figures \ref{fig:gbm_dri} and \ref{fig:gbm_vol} show how parameters such as the drift and the volatility affect trends generated by \textit{GBM}. While drift ($\mu$) is responsible for overall trend (whether stock prices rise overtime ($\mu$ > 0) or drop very rapidly ($\mu$ << 0)), volatility is a parameter describing dispersion of values. If it is high, then the dispersion is high as well (see red trend in the Fig. \ref{fig:gbm_vol}).
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{img/gbm_dri_06_02andm08.png}
@@ -148,12 +148,12 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
         \end{figure}
     
 \section{Options}
-    Options are some of the most popular derivative financial instruments. Derivative means in this example that it's value is reliant upon an underlying asset. The most important thing about options, one that distinguishes them from other derivative instruments it the \textbf{optionality} -- contract can, be is not obligatory to be made.
+    Options are some of the most popular derivative financial instruments. Derivative means in this example that it's value is reliant upon an underlying asset. The most important thing about options, one that distinguishes them from other derivative instruments it the \textbf{optionality} -- contract can, but is not obligatory to be made.
     
     There are 2 main types of options:
     \begin{itemize}
         \item \textbf{Call option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time.
-        \item \textbf{Put option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time ( see definition there \cite{Call_Put_Option_Definition}).
+        \item \textbf{Put option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time (more details here \cite{Call_Put_Option_Definition}).
     \end{itemize}
     
     There are several parameters that describe an option, most important ones are:
@@ -162,9 +162,9 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
         \item \textbf{Strike Price} -- agreed price at which the derivative underlying asset can be bought or sold (depends on a type of option) when it is exercised.
     \end{itemize}
     %
-    Further division into option types depends on when the option can be exercised. The most basic one is \textbf{European}-style option -- decision whether option will or will not be exercised is made at the time of option's expiry. Continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in \textbf{Burmudan} Option -- contract can be exercised at specific days before the expiration. In this paper European Options will be presented (more about option types here \cite{Option_Types}).
+    Further division into option types depends on when the option can be exercised. The most basic one is a \textbf{European}-style option -- the decision whether option will or will not be exercised is made at the time of the option's expiry. A continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in the \textbf{Burmudan} Option -- the contract can be exercised at specific days before the expiration. In this paper European Options will be presented (more about option types in \cite{Option_Types}).
     
-    Code implementing options is as follows:
+    The code which implements options is as follows:
     \begin{lstlisting}[language=FSharp, label={lst:option}, caption=F\# implementation of an option.]
 type CallOrPutFlag =
     | Call
@@ -216,7 +216,7 @@ type OptionRecord =
         }
     \end{lstlisting}
     %
-    Before an option is generated, user is able to specify parameters affecting the calculation, as show in the fig. \ref{fig:parametersPresentation}.
+    Before an option is generated, the user is able to specify parameters affecting the calculation, as shown in the Fig. \ref{fig:parametersPresentation}.
     \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{img/specifyParameters.png}
@@ -233,30 +233,34 @@ type OptionRecord =
             \label{fig:optionsPresentation}
     \end{figure}
 \section{Black-Scholes Model}
-    The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 major economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel prize for economics in 1997. Certainly same would happen for Black if sadly it was not for his death in 1975).
+    The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 great economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel Prize in Economics in 1997. We may assume same would happen for Black if sadly it was not for his death in 1975).
     %
-    Their model was a significant breakthrough in world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
+    Their model was a significant breakthrough in the world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
     
-    This thesis' aim was not to goo deep into understanding the mathematical background behind the model but rather implement the model in a practical tool that one would be able to effectively use. Therefore more information and specifics can be found either in the original publication \cite{10.2307/1831029} of the model from 1973 in \textit{The Pricing of Options and Corporate Liabilities} of the Journal of Political Economy by Fischer Black and Myron Scholes.
+    This thesis' aim was not to goo too deep into the understanding of the mathematical background behind the model but rather to implement the model in a practical tool that one would be able to effectively use. Therefore more information and specifics can be found in the original publication \cite{10.2307/1831029} of the model from 1973 in \textit{The Pricing of Options and Corporate Liabilities} of the Journal of Political Economy by Fischer Black and Myron Scholes.
     
-    Main formula of the model used for option pricing is as follows:
+    The main formula of the model used for option pricing is as follows:
     \[
     C = S_0\phi(d_1) - Ke^{-rt}\phi(d_2)
+    ,
     \]
     \[
     P = -S_0\phi(-d_1) + Ke^{-rt}\phi(-d_2)
+    ,
     \]
     \[
     d_1 = ln\frac{S_0}{K} + (r+\frac{\sigma^2}{2})t
+    ,
     \]
     \[
-    d_2 = d_1 - \sigma\sqrt{t},
+    d_2 = d_1 - \sigma\sqrt{t}
+    ,
     \]
     where:
     \begin{itemize}
         \item $C$ - call option price,
         \item $P$ - put option price,
-        \item $S_0$ - underlying asset price at the time being,
+        \item $S_0$ - current price of an underlying asset,
         \item $\phi()$ - standardized cumulative normal distribution,
         \item $K$ - strike price,
         \item $r$ - risk free rate (1\% represented as 0.01),
@@ -267,13 +271,13 @@ type OptionRecord =
     The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows \textit{Geometric Brownian Motion} with constant drift and volatility. 
     % \todo{diff eq thats at the core of the model as curiosity}
     %
-    Simple analytical formula allows the model to be written in several lines of code thanks to the functional paradigm of the F\# language.
+    A simple analytical formula allows the model to be written in several lines of code thanks to the functional paradigm of the F\# language.
     \begin{lstlisting}[language=FSharp, label={lst:bsm}, caption=F\# implementation of \textit{Black--Scholes Model}.]
     (* Black-Scholes for Option Valuation
     Parameters:
         call_or_put_flag (CallOrPutFlag):
             Flag that determines whether this option is put or call
-        s0 (float): Underlying asset price at the time being
+        s0 (float): current price of an underlying asset (stock)
         k (float): strike price
         t (float): expiry date (counted in years from now on, e.g. 1.5)
         r (float): risk free rate (e.g. 0.05 means 5%)
