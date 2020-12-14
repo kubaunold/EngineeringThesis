@@ -50,151 +50,131 @@
 \newcommand{\source}[1]{\caption*{Source: {#1}} }
 
 \usepackage{amsfonts}   % for mathbb
+\usepackage{imakeidx}
+\makeindex
+
+% % v1 list of listings + frame of a listing
+% \usepackage{xcolor}
+% \usepackage{caption}
+% \usepackage[most]{tcolorbox}
+% \newtcbinputlisting[auto counter,list inside=lol,list type={lstlisting}]{\mylisting}[2][]{%
+%   listing file={#2},
+%   title=Listing,
+%   colback=white,
+%   colframe=gray!75!black,
+%   fonttitle=\bfseries,
+%   listing only,
+%   breakable,
+%   title=Soubor \thetcbcounter: #2,
+%   #1
+% }
+% \renewcommand{\lstlistingname}{List of Listings}
+% \newcommand{\listingsfont}{\ttfamily}
+
+% % v2 list of listings
+% \usepackage{xcolor}
+% \usepackage{listings}
+% \usepackage{caption}
+% \usepackage{tcolorbox}
+% \tcbuselibrary{breakable}
+% \tcbuselibrary{listings}
+% \newtcbinputlisting[auto counter]{\mylisting}[2][]{listing file={#2},title=Listing,colback=white,colframe=gray!75!black,fonttitle=\bfseries,listing only,breakable,title=Soubor \thetcbcounter: #1}
+% \renewcommand{\lstlistingname}{Listing}
+% \newcommand{\listingsfont}{\ttfamily} 
+
+% % v1 formatting listing itself
+% \usepackage{tcolorbox}
+% \tcbuselibrary{listings,skins}
+% \lstdefinestyle{mystyle}{
+% numbers=left, 
+% numberstyle=\small, 
+% numbersep=8pt, 
+% language=Pascal
+% }
+% \newtcblisting{mylisting}[2][]{
+%     arc=0pt, outer arc=0pt,
+%     listing only, 
+%     listing style=mystyle,
+%     title=#2,
+%     #1
+%     }
 
 
+% v2 formatting listing in a frame
+% \usepackage{xcolor}
+% \usepackage{listings}
+% \usepackage{caption}
+% \DeclareCaptionFont{white}{\color{white}}
+% \DeclareCaptionFormat{listing}{%
+%   \parbox{\textwidth}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}\vskip-4pt}}
+% \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+% \lstset{frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep}
 
-% for FSharp syntax
+% v3 formatting listing in a frame
 \usepackage{listings}
-\usepackage{color}
-\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-\definecolor{greencomments}{rgb}{0,0.5,0}
-\definecolor{redstrings}{rgb}{0.9,0,0}
-\usepackage{upquote}
-\lstdefinelanguage{FSharp}%
-{morekeywords={let, new, match, with, rec, open, module, namespace, type, of, member, % 
-and, for, while, true, false, in, do, begin, end, fun, function, return, yield, try, %
-mutable, if, then, else, cloud, async, static, use, abstract, interface, inherit, finally },
-  otherkeywords={ let!, return!, do!, yield!, use!, var, from, select, where, order, by },
-  keywordstyle=\color{bluekeywords},
-  sensitive=true,
-  basicstyle=\ttfamily,
-	breaklines=true,
-  xleftmargin=\parindent,
-  aboveskip=\bigskipamount,
-	tabsize=4,
-  morecomment=[l][\color{greencomments}]{///},
-  morecomment=[l][\color{greencomments}]{//},
-  morecomment=[s][\color{greencomments}]{{(*}{*)}},
-  morestring=[b]",
-  showstringspaces=false,
-  literate={`}{\`}1,
-  stringstyle=\color{redstrings},
-}
+\lstset{
+numbers=left, 
+numberstyle=\small, 
+numbersep=8pt, 
+frame = single, 
+%language=Pascal, 
+framexleftmargin=15pt}
 
+% for source of the Figure
+% \usepackage{caption}
+% \newcommand{\source}[1]{\vspace{-3pt} \caption*{ Source: {#1}} }
+% \newcommand{\source}[1]{\caption*{\hfill Source: {#1}} }
+% \usepackage{hyperref}
 
-
-% For C# syntax v1
-% \usepackage{etoolbox}
+% % for FSharp syntax
+% \usepackage{listings}
 % \usepackage{color}
-
-% \definecolor{base0}{RGB}{131,148,150}
-% \definecolor{base01}{RGB}{88,110,117}
-% \definecolor{base2}{RGB}{238,232,213}
-% \definecolor{sgreen}{RGB}{133,153,0}
-% \definecolor{sblue}{RGB}{38,138,210}
-% \definecolor{scyan}{RGB}{42,161,151}
-% \definecolor{smagenta}{RGB}{211,54,130}
-
-% \newcommand\digitstyle{\color{smagenta}}
-% \newcommand\symbolstyle{\color{base01}}
-% \makeatletter
-% \newcommand{\ProcessDigit}[1]
-% {%
-%   \ifnum\lst@mode=\lst@Pmode\relax%
-%   {\digitstyle #1}%
-%   \else
-%     #1%
-%   \fi
-% }
-% \makeatother
-
-% \lstdefinestyle{solarizedcsharp} {
-%   language=[Sharp]C,
-%   frame=lr,
-%   linewidth=160mm,
-%   breaklines=true,
-%   tabsize=2,
-%   numbers=left,
-%   numbersep=5pt,
-%   firstnumber=auto,
-%   numberstyle=\tiny\ttfamily\color{base0},
-%   rulecolor=\color{base2},
-%   basicstyle=\footnotesize\ttfamily,
-%   commentstyle=\color{base01},
-%   morecomment=[s][\color{base01}]{/*+}{*/},
-%   morecomment=[s][\color{base01}]{/*-}{*/},
-%   morekeywords={  abstract, event, new, struct,
-%                 as, explicit, null, switch,
-%                 base, extern, object, this,
-%                 bool, false, operator, throw,
-%                 break, finally, out, true,
-%                 byte, fixed, override, try,
-%                 case, float, params, typeof,
-%                 catch, for, private, uint,
-%                 char, foreach, protected, ulong,
-%                 checked, goto, public, unchecked,
-%                 class, if, readonly, unsafe,
-%                 const, implicit, ref, ushort,
-%                 continue, in, return, using,
-%                 decimal, int, sbyte, virtual,
-%                 default, interface, sealed, volatile,
-%                 delegate, internal, short, void,
-%                 do, is, sizeof, while,
-%                 double, lock, stackalloc,
-%                 else, long, static,
-%                 enum, namespace, string, var},
-%   keywordstyle=\bfseries\color{sgreen},
+% \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+% \definecolor{greencomments}{rgb}{0,0.5,0}
+% \definecolor{redstrings}{rgb}{0.9,0,0}
+% \usepackage{upquote}
+% \lstdefinelanguage{FSharp}%
+% {morekeywords={let, new, match, with, rec, open, module, namespace, type, of, member, and, for, while, true, false, in, do, begin, end, fun, function, return, yield, try, mutable, if, then, else, cloud, async, static, use, abstract, interface, inherit, finally },
+%   otherkeywords={ let!, return!, do!, yield!, use!, var, from, select, where, order, by },
+%   keywordstyle=\color{bluekeywords},
+%   sensitive=true,
+%   basicstyle=\ttfamily,
+% 	breaklines=true,
+%   xleftmargin=\parindent,
+%   aboveskip=\bigskipamount,
+% 	tabsize=4,
+%   morecomment=[l][\color{greencomments}]{///},
+%   morecomment=[l][\color{greencomments}]{//},
+%   morecomment=[s][\color{greencomments}]{{(*}{*)}},
+%   morestring=[b]",
 %   showstringspaces=false,
-%   stringstyle=\color{scyan},
-%   identifierstyle=\color{sblue},
-%   extendedchars=true,
-%   literate=
-%     {0}{{{\ProcessDigit{0}}}}1
-%     {1}{{{\ProcessDigit{1}}}}1
-%     {2}{{{\ProcessDigit{2}}}}1
-%     {3}{{{\ProcessDigit{3}}}}1
-%     {4}{{{\ProcessDigit{4}}}}1
-%     {5}{{{\ProcessDigit{5}}}}1
-%     {6}{{{\ProcessDigit{6}}}}1
-%     {7}{{{\ProcessDigit{7}}}}1
-%     {8}{{{\ProcessDigit{8}}}}1
-%     {9}{{{\ProcessDigit{9}}}}1
-%     {\}}{{\symbolstyle{\}}}}1
-%     {\{}{{\symbolstyle{\{}}}1
-%     {(}{{\symbolstyle{(}}}1
-%     {)}{{\symbolstyle{)}}}1
-%     {=}{{\symbolstyle{$=$}}}1
-%     {;}{{\symbolstyle{$;$}}}1
-%     {>}{{\symbolstyle{$>$}}}1
-%     {<}{{\symbolstyle{$<$}}}1
-%     {\%}{{\symbolstyle{$\%$}}}1,
+%   literate={`}{\`}1,
+%   stringstyle=\color{redstrings},
 % }
 
-% \lstset{escapechar=@,style=solarizedcsharp}
 
 
-% For C# syntax v12
-\usepackage[T1]{fontenc}
-\usepackage[scaled]{beramono}
 
-\usepackage{color}
-\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-\definecolor{greencomments}{rgb}{0,0.5,0}
-\definecolor{redstrings}{rgb}{0.9,0,0}
-
-\usepackage{listings}
-\lstset{language=[Sharp]C,
-showspaces=false,
-showtabs=false,
-breaklines=true,
-showstringspaces=false,
-breakatwhitespace=true,
-escapeinside={(*@}{@*)},
-commentstyle=\color{greencomments},
-keywordstyle=\color{bluekeywords}\bfseries,
-stringstyle=\color{redstrings},
-basicstyle=\ttfamily
-}
+% % For C# syntax
+% \usepackage[T1]{fontenc}
+% \usepackage[scaled]{beramono}
+% \usepackage{color}
+% \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+% \definecolor{greencomments}{rgb}{0,0.5,0}
+% \definecolor{redstrings}{rgb}{0.9,0,0}
+% \usepackage{listings}
+% \lstset{language=[Sharp]C,
+% showspaces=false,
+% showtabs=false,
+% breaklines=true,
+% showstringspaces=false,
+% breakatwhitespace=true,
+% escapeinside={(*@}{@*)},
+% commentstyle=\color{greencomments},
+% keywordstyle=\color{bluekeywords}\bfseries,
+% stringstyle=\color{redstrings},
+% basicstyle=\ttfamily
+% }
 
 
 
@@ -789,8 +769,13 @@ SPECIALIZATION: & \@specjalnosc\\
 %\includeonly{abbreviations,chapter01} % uncomment it if you with to complile only selected latex files (this will speed up compilation, especially if you focuse on a specific part of the thesis)
 
 \begin{document}
-
+%==============================================
+% Added by me [Kuba]
 \selectlanguage{english}
+
+
+
+%==============================================
 
 % Here you have the commands for setting the spacing (do not change)
 %\SingleSpacing
@@ -840,9 +825,9 @@ SPECIALIZATION: & \@specjalnosc\\
 %\lstlistoflistings*
 
 % Below there are inclusions of latex files
-\include{abbreviations} % If abbreviations list is short, you can comment it out
+% \include{abbreviations} % If abbreviations list is short, you can comment it out
 \chapterstyle{default}
-% \include{chapter00}
+\include{chapter00}
 \include{chapter01}
 \include{chapter02}
 \include{chapter03}
@@ -850,12 +835,12 @@ SPECIALIZATION: & \@specjalnosc\\
 \include{chapter05}
 \include{chapter06}
 
-% wstawię tutaj, czy spis rysunkow przeniesie się na koniec?
-%   > tak!
 \newpage
 \mbox{}\pdfbookmark[0]{List of figures}{spisRysunkow.1}
 \addcontentsline{toc}{chapter}{List of figures}
 \listoffigures*
+% \tcblistof[\chapter*]{lol}{\lstlistingname}   %v1
+\lstlistoflistings                              %v2
 
 
 % \bibliographystyle{plalpha}
@@ -875,7 +860,7 @@ SPECIALIZATION: & \@specjalnosc\\
 %%Uncomment the lines below, if you want to use index
 %%\chapterstyle{noNumbered}
 %%\phantomsection 
-%%\addcontentsline{toc}{chapter}{Index}
-%%\printindex
+\addcontentsline{toc}{chapter}{Index}
+\printindex
 
 \end{document}

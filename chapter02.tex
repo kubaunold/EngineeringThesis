@@ -1,12 +1,13 @@
 \chapter{Application -- Theoretical Background and Practical Implementation}
 %\section{Theoretical background}
 
-\section{Geometric Brownian Motion}
-        
+\section{Geometric Brownian Motion}\index{Geometric Brownian Motion}
+    This section focuses on explaining what \textit{Geometrical Brownian Motion} is and how it can be implemented in the F\# language.
+    
     \subsection{Geometric Brownian Motion -- Introduction}
         \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock prices). In order to define correctly what a \textit{GBM} is, it is essential to first describe several terms that will help further understanding.
     
-    \subsection{Random Walk}
+    \subsection{Random Walk}\index{Random Walk}
         In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, more details here \cite{randomWalk}.
         %
         If 1-dimensional space is considered, then it is best to present the action on the number line.
@@ -57,7 +58,7 @@
         %
         Therefore, the average distance that the dot will appear on at the end of the walk will be at \(\sqrt{N}\) blocks from the starting position.
         
-    \subsection{Wiener Process}
+    \subsection{Wiener Process}\index{Wiener Process}
         The \textit{Wiener Process} is also usually called the \textit{Standard Brownian Motion}. It is a continuous-time stochastic process named after Norbert Wiener for his work on 1D \textit{Brownian Motion}.
         %
         \textit{Wiener Process}, as well as \textit{Random Walk}, starts at 0 (\( W(0) = 0 \)) and its increment follows Gaussian distribution with mean \(0\) and variance \(t-s\) for any \(0\leq s < t \) (more details here \cite{wienerProcess}).
@@ -82,18 +83,19 @@
     %
     The key to understanding constant parameters $\mu$ -- drift and $\sigma$ -- volatility is to pair the former with modeling deterministic trends while the latter with the amount of unpredictable events occurrences during the motion (more information about \textit{GBM} can be found here \cite{gbm}).
     
-    To create \textit{Geometric Brownian Motion}, \textit{Wiener Process} based on random normal variables is required. Since, in F\# language there is no default library containing such variables generator, one can use Box-Muller Transform, that for two independently uniformly distributed random variables $U_1$ and $U_2$ from the interval $[0,1]$ creates 2 independent, \textbf{normal} random variables $N_1$ and $N_2$:
+    To create \textit{Geometric Brownian Motion}, \textit{Wiener Process} based on random normal variables is required. Since, in F\# language there is no default library containing such variables generator, one can use \textit{Box-Muller Transform}. For two independently uniformly distributed random variables $U_1$ and $U_2$ that come from a distribution on the interval $[0,1]$, \textit{Box-Muller Transform} creates 2 independent, \textbf{normal} random variables $N_1$ and $N_2$:
     \[
     N_1 = \sqrt{-2\ln{U_1}}\sin(2\pi U_2), N_2 = \sqrt{-2\ln{U_1}}\cos(2\pi U_2)
     .
     \]
     
     Undermentioned listing shows possible implementation of \textit{GBM}.
-    \begin{lstlisting}[language=FSharp, label={lst:gbm}, caption=F\# implementation of \textit{Geometric Brownian Motion}.]
-//generates list of n Uniform RVs from interval [0,1]; here it's [0,1)
+    \begin{lstlisting}[caption=F\# implementation of \textit{Geometric Brownian Motion}.]
+//generates list of n Uniform RVs from interval [0,1]
 let genRandomNumbersNominalInterval (count:int) (seed:int) : float list =
     let rnd = System.Random(seed)
     List.init count (fun _ -> rnd.NextDouble())
+
 //input: UniformRM need to be from interval (0,1]
 //input: steps must be even
 //output: NormalRV have mean=0 and standard_deviation=1
@@ -147,13 +149,13 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
             \label{fig:gbm_vol}
         \end{figure}
     
-\section{Options}
+\section{Options}\index{Option}
     Options are some of the most popular derivative financial instruments. Derivative means in this example that it's value is reliant upon an underlying asset. The most important thing about options, one that distinguishes them from other derivative instruments it the \textbf{optionality} -- contract can, but is not obligatory to be made.
     
     There are 2 main types of options:
     \begin{itemize}
-        \item \textbf{Call option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time.
-        \item \textbf{Put option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time (more details here \cite{Call_Put_Option_Definition}).
+        \item \textbf{Call option}\index{Call Option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time.
+        \item \textbf{Put option}\index{Put Option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time (more details here \cite{Call_Put_Option_Definition}).
     \end{itemize}
     
     There are several parameters that describe an option, most important ones are:
@@ -162,10 +164,12 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
         \item \textbf{Strike Price} -- agreed price at which the derivative underlying asset can be bought or sold (depends on a type of option) when it is exercised.
     \end{itemize}
     %
+    \index{Expiry}
+    \noindent
     Further division into option types depends on when the option can be exercised. The most basic one is a \textbf{European}-style option -- the decision whether option will or will not be exercised is made at the time of the option's expiry. A continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in the \textbf{Burmudan} Option -- the contract can be exercised at specific days before the expiration. In this paper European Options will be presented (more about option types in \cite{Option_Types}).
     
     The code which implements options is as follows:
-    \begin{lstlisting}[language=FSharp, label={lst:option}, caption=F\# implementation of an option.]
+    \begin{lstlisting}[label={lst:option}, caption=F\# implementation of an option.]
 type CallOrPutFlag =
     | Call
     | Put
@@ -216,7 +220,7 @@ type OptionRecord =
         }
     \end{lstlisting}
     %
-    Before an option is generated, the user is able to specify parameters affecting the calculation, as shown in the Fig. \ref{fig:parametersPresentation}.
+    Before an option is generated, the user is able to specify parameters affecting the calculation, as shown in Fig. \ref{fig:parametersPresentation}.
     \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{img/specifyParameters.png}
@@ -224,7 +228,8 @@ type OptionRecord =
             \caption*{Source: \textit{MARS App}}
             \label{fig:parametersPresentation}
     \end{figure}
-    Generating options presents as follows:
+    \noindent
+    Generating options presents is presented in Figure \ref{fig:optionsPresentation}:
     \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{img/optionsPresentation.png}
@@ -232,7 +237,7 @@ type OptionRecord =
             \caption*{Source: \textit{MARS App}}
             \label{fig:optionsPresentation}
     \end{figure}
-\section{Black-Scholes Model}
+\section{Black-Scholes Model}\index{Black-Scholes Model} \index{Fisher Black} \index{Myron Scholes} \index{Robert Merton}
     The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 great economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel Prize in Economics in 1997. We may assume same would happen for Black if sadly it was not for his death in 1975).
     %
     Their model was a significant breakthrough in the world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
@@ -268,11 +273,11 @@ type OptionRecord =
         \item $\sigma$ - volatility (20\% represented as 0.2).
     \end{itemize}
     %
-    The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows \textit{Geometric Brownian Motion} with constant drift and volatility. 
+    The formula assumes that the price history of an underlying asset (in this example - a stock price) has a lognormal distribution and follows \textit{Geometric Brownian Motion} with constant drift and volatility. \index{Drift}\index{Volatility}
     % \todo{diff eq thats at the core of the model as curiosity}
     %
     A simple analytical formula allows the model to be written in several lines of code thanks to the functional paradigm of the F\# language.
-    \begin{lstlisting}[language=FSharp, label={lst:bsm}, caption=F\# implementation of \textit{Black--Scholes Model}.]
+    \begin{lstlisting}[label={lst:bsm}, caption=F\# implementation of \textit{Black--Scholes Model}.]
     (* Black-Scholes for Option Valuation
     Parameters:
         call_or_put_flag (CallOrPutFlag):

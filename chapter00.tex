@@ -1,23 +1,15 @@
-\chapter{Test\todo{Rename Spis Treści to Table of Contents}}
+\chapter*{Abstract}%
+\addcontentsline{toc}{chapter}{\numberline{}Abstract}%
+    This paper is an overview of some methods used for pricing selected financial instruments (or their derivatives). The main part of the project was creating a tool - a computer program written mostly in F\# for that purpose. The application is named \textit{MARS App} -- it is an acronym  of the English words \textit{Market And Risk Simulation}. Two models have been presented: first being Black-Scholes model from 1973 which gives an estimate of the price of a European-style option. As the underlying asset a stock price was used. In order to generate stock prices over time Geometric Brownion Motion has been implemented as this stochastic process is usually applied in the Black-Scholes model. The other model is Black's model from 1976 which is a slightly altered Black-Scholes model while it is adjusted for valuing options on futures contracts.
+    
+    This paper can be as well a kind of a guide how to create an F\# application using MVVM architecture with XAML markup language for creating user interface as such tutorials are scarce in literature.
+    
+    \emph{Keywords: functional programming, financial instruments, pricing, MVVM, Black-Scholes, Black}
 
-In this Chapter I will test various Latex things. 
-To jest kawałek tekstu. w pracy 
-%\cite{ISHED1} 
-pokazano.
-\%
-$$
-K(x^*)=\min_{x\in X}K(x)  
-$$
-\begin{equation}
-K(x^*)=\min_{x\in X}K(x)  
-\label{eq:1}
-\end{equation}
-We wzorze (\ref{eq:1}) podano zapis poprawny. W tekście jest inaczej $K(x^*)=\min_{x\in X}K(x)$.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{by-nc-sa.png}
-    \caption[To jest inny podpis]{To jest mój rysunek}
-    \label{fig:my_label}
-\end{figure}
-Odwaołanie do rysunku \ref{fig:my_label}
+\chapter*{Streszczenie}%
+\addcontentsline{toc}{chapter}{\numberline{}Streszczenie}%
+    W prezentowanej pracy inżynierskiej przedstawiono proces tworzenia narzędzia do wyceny wybranych instrumentów finansowych. Zaprezentowano wycenę europejskiej opcji przy użyciu znanego modelu Blacka-Scholes'a z 1973 roku, gdzie instrumentem podstawowym jest akcja wygenerowana za pomocą Geometrycznego Ruchu Browna. Pokazano również zastosowanie modelu Black'a z 1976 roku, gdzie w przeciwieństwie do poprzedniego modelu cena instrumentu bazowego zostaje zastąpiona zdyskontowaną wartością kontraktu futures/forward na ten instrument.
+    
+    W tym celu została stworzona aplikacja desktopowa w języku F\#, w paradygmacie programowania funkcyjnego, przy użyciu wzorca MVVM oraz technologii XAML do stworzenia interfejsu użytkownika. Aplikacja nosi nazwę MARS App -- jest to akronim od angielskiego \textit{Market And Risk Simulation Application}, co oznacza aplikację przeznaczoną do symulacji rynku i ryzyka. Praca zawiera również swoisty poradnik, jak stworzyć aplikację w języku F\#, opartą o architekturę MVVM w zintegrowanym środowisku programistycznym Visual Studio 2019 będącym produktem firmy Microsoft. Powyższy stos technologiczny nie jest często spotykany, co przejawia się zredukowaną ilością poradników pomagających stworzyć podobną aplikację nowym użytkownikom.
+    
+    \emph{Słowa kluczowe: programowanie funkcyjne, instrumenty finansowe, wycena, MVVM, Black-Scholes, Black}
