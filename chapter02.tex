@@ -5,12 +5,12 @@
     This section focuses on explaining what \textit{Geometrical Brownian Motion} is and how it can be implemented in the F\# language.
     
     \subsection{Geometric Brownian Motion -- Introduction}
-        \textit{Geometric Brownian Motion} is frequently used as a model for simulating diverse variables such as financial processes (for example stock prices). In order to define correctly what a \textit{GBM} is, it is essential to first describe several terms that will help further understanding.
+        \textit{Geometric Brownian Motion} is often used as a model for simulating diverse variables. Therefore, financial processes, such as stock prices, are frequently modeled using \textit{GBM}. In order to define correctly what a \textit{GBM} is, it is essential to first describe several terms that will help further understanding.
     
     \subsection{Random Walk}\index{Random Walk}
-        In mathematics \textit{Random Walk} is an example of a stochastic process that illustrates how objects might travel if they are randomly-moving, more details here \cite{randomWalk}.
+        \textit{Random Walk} is a stochastic process used in mathematics that illustrates how objects might travel if they were to move randomly, more details here \cite{randomWalk}.
         %
-        If 1-dimensional space is considered, then it is best to present the action on the number line.
+        If 1D space is taken into account, then it is best to present the action on the number line.
         \begin{figure}[H]
             \centering
             \includegraphics{img/numberLine.png}
@@ -42,7 +42,7 @@
         .
         \]
         %
-        Since each move has the same probability to be $-1$ or $1$ then the expected value of such series (the final position of the dot) can be easily calculated:
+        Since each move has the same probability (can be either $-1$ or $+1$) then the expected value of such series (the final position of the dot) can be easily calculated as follows:
         \[
         \mathbb{E}(RW) = 0
         .
@@ -143,9 +143,9 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
             \includegraphics[width=\textwidth]{img/gbm_vol_08_02andm03.png}
             \caption{\textit{GBM} trends when volatility ($\sigma$ parameter) is changing:}
             \caption*{Source: \textit{MARS App}}
-            \caption*{red: $\mu = 0.8$,}
-            \caption*{blue: $\mu = 0.2$,}
-            \caption*{yellow: $\mu = -0.3$.}
+            \caption*{red: $\sigma = 0.8$,}
+            \caption*{blue: $\sigma = 0.2$,}
+            \caption*{yellow: $\sigma = -0.3$.}
             \label{fig:gbm_vol}
         \end{figure}
     
@@ -154,9 +154,11 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
     
     There are 2 main types of options:
     \begin{itemize}
-        \item \textbf{Call option}\index{Call Option} -- the buyer of the call option earns a right (not an obligation) to exercise his option to buy a particular asset from the call option seller for a stipulated period of time.
-        \item \textbf{Put option}\index{Put Option} -- the buyer of the put option earns a right to exercise his option to sell a particular asset to the put option seller for a stipulated period of time (more details here \cite{Call_Put_Option_Definition}).
+        \item \textbf{Call option}\index{Call Option} -- the buyer of such option buys himself a right (it is not an obligation) to exercise the option (buy an underlying asset) from the option seller after the option has reached its maturity.
+        \item \textbf{Put option}\index{Put Option} -- the buyer of such option buys himself a right to sell an underlying asset to the option seller after the option has reached its maturity. 
     \end{itemize}
+    \noindent
+    More about the options definitions can be found here \cite{Call_Put_Option_Definition}.
     
     There are several parameters that describe an option, most important ones are:
     \begin{itemize}
@@ -166,7 +168,7 @@ let simulateGBM (count:int) (steps:int) (price:float) (drift:float) (vol:float) 
     %
     \index{Expiry}
     \noindent
-    Further division into option types depends on when the option can be exercised. The most basic one is a \textbf{European}-style option -- the decision whether option will or will not be exercised is made at the time of the option's expiry. A continuous option type is an \textbf{American} option -- option can be exercised at any time before the expiry. Combination of those two can be found in the \textbf{Burmudan} Option -- the contract can be exercised at specific days before the expiration. In this paper European Options will be presented (more about option types in \cite{Option_Types}).
+    Further division into option types depends on when the option can be exercised. The most basic one is a \textbf{European}-style option -- the decision whether option will or will not be exercised is made at the time of the option's expiry. A continuous option type is an \textbf{American}--style option -- option can be exercised at any time before the expiry. Combination of those two can be found in the \textbf{Burmudan}--style option -- the contract can be exercised at specific days before the expiration. In this paper European options will be presented (more about option types in \cite{Option_Types}).
     
     The code which implements options is as follows:
     \begin{lstlisting}[label={lst:option}, caption=F\# implementation of an option.]
@@ -219,7 +221,18 @@ type OptionRecord =
             UnderlyingStock = Stock.Random (calc: CalculationParameters) (market : MarketData)
         }
     \end{lstlisting}
-    %
+    
+    \noindent
+    Generating options is presented in Figure \ref{fig:optionsPresentation}:
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/optionsPresentation.png}
+            \caption{Options view in the application.}
+            \caption*{Source: \textit{MARS App}}
+            \label{fig:optionsPresentation}
+    \end{figure}
+    
+    \noindent
     Before an option is generated, the user is able to specify parameters affecting the calculation, as shown in Fig. \ref{fig:parametersPresentation}.
     \begin{figure}[H]
             \centering
@@ -228,17 +241,8 @@ type OptionRecord =
             \caption*{Source: \textit{MARS App}}
             \label{fig:parametersPresentation}
     \end{figure}
-    \noindent
-    Generating options presents is presented in Figure \ref{fig:optionsPresentation}:
-    \begin{figure}[H]
-            \centering
-            \includegraphics[width=\textwidth]{img/optionsPresentation.png}
-            \caption{Options view in the application.}
-            \caption*{Source: \textit{MARS App}}
-            \label{fig:optionsPresentation}
-    \end{figure}
 \section{Black-Scholes Model}\index{Black-Scholes Model} \index{Fisher Black} \index{Myron Scholes} \index{Robert Merton}
-    The Black--Scholes (or also called Black--Scholes--Merton) formula was created back in 1970s by 3 great economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were awarded Nobel Prize in Economics in 1997. We may assume same would happen for Black if sadly it was not for his death in 1975).
+    The Black--Scholes formula was created back in 1970s by 3 great economists: Fischer Black, Myron Scholes and Robert Merton (Scholes and Merton were later awarded Nobel Prize in Economics in 1997. We may assume same would happen for Black if sadly it was not for his death in 1975). That why this model is sometimes also called Black--Scholes--Merton.
     %
     Their model was a significant breakthrough in the world of mathematical models used for pricing derivative instruments. It provides a framework for European-style option valuations, such as calls and puts.
     

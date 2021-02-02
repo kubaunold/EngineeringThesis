@@ -153,7 +153,7 @@ let r = sumOfSquares 100
     %
     These are the major reasons why F\# was selected to be the core language of the project.
 \subsection{MVVM design pattern}\index{MVVM Design Pattern}
-    \textit{Model-View-ViewModel} is an example of an architectural pattern used in programming. This design pattern's main goal is to separate the user interface from back-end logic. For this purpose there are 3 main components of the MVVM pattern:
+    \textit{Model-View-ViewModel} is one of design patterns that are used in programming. It's primary role is to separate the user interface from the  back-end logic. For this purpose there are 3 main components of the MVVM pattern:
     \begin{itemize}
         \item View,
         \item ViewModel,
@@ -163,15 +163,15 @@ let r = sumOfSquares 100
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/MVVMPattern.png}
-        \caption{Three core components of the MVVM design pattern.}
+        \caption{Three basic components of the MVVM architectural pattern.}
         \label{fig:mvvm_pattern}
         \source{https://en.wikipedia.org/wiki/Model-view-viewmodel\#/media/File:MVVMPattern.png}
     \end{figure}
     %
-    The Fig. \ref{fig:mvvm_pattern} presents a graph with relations between individual components.
+    The Fig. \ref{fig:mvvm_pattern} presents a graph with relations between the  components. The important point is the fact that the View ``does not see`` the Model. Components of the View are \textit{binded} with corresponding ones in the ViewModel. In the ViewModel they are specially equipped with mechanisms responsible for keeping the changes up to date (change in the logic immediately triggers change in the View part). ViewModel works as a bridge between the Model and the View.
     
     \subsubsection{View} \index{View}
-        View in this case is a synonym of UI (in most cases GUI). Its purpose is to define the appearance of an app -- where and how do buttons look an lay, how the data is presented to the user, which elements are static and which have dynamic binding. As the name suggests, it handles the \textit{view} of the project - what the user actually sees on the screen.
+        View in this case is a synonym of UI (in most cases GUI). View's purpose is to define the appearance of an app: where do buttons appear and how they look, how the data is presented to the user and which elements are static or have dynamic binding. As the name suggests, it handles the \textit{view} of an app - what can actually be seen on the screen.
         %
         In the presented application the role of the \textit{View} part is taken by a project named \textit{View} \ref{fig:view}.
         
